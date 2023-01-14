@@ -1,0 +1,13 @@
+/frontend/node_modules
+/database
+**/env
+**/migrations
+
+*.pyc
+*.env
+
+docker-compose.yml
+Dockerfile
+.dockerignore
+db.sqlite3
+.DS_Store
