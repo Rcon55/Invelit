@@ -2,6 +2,7 @@ import { Box, Tab, Tabs } from '@mui/material'
 import * as React from 'react'
 import { useAppDispatch } from '../hooks/typedHooks';
 import { fetchDictTables } from '../store/actions/dictTables';
+import { fetchExperiments } from '../store/actions/experiments';
 import { fetchSamples } from '../store/actions/samples';
 import AppMenuStoreAnalysis from './AppMenuStoreAnalysis';
 import { AppMenuStoreLocal } from './AppMenuStoreLocal';
@@ -18,6 +19,7 @@ const AppMenuStore = () => {
 
 	React.useEffect(() => {dispatch(fetchSamples())}, []);
 	React.useEffect(() => {dispatch(fetchDictTables())}, []);
+	React.useEffect(() => {dispatch(fetchExperiments())}, []);
 
 
 	return (

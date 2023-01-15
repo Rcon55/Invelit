@@ -7,6 +7,7 @@ const getTable = (store: any, tableName:string) => {
 	switch (tableName) {
 		case 'Samples': return(store.samples)
 		case 'Properties': return(store.properties)
+		case 'Experiments': return(store.experiments)
 	}
 }
 

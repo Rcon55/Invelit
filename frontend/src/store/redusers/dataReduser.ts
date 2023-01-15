@@ -4,6 +4,7 @@ import { dataStoreType, DataActions, dataActionsType } from "../../types/store"
 const defaultState: dataStoreType = {
 	samples: [],
 	dictTables: {},
+	experiments: [],
 	properties: [],
 }
 
@@ -14,6 +15,9 @@ export function dataReducer (state = defaultState, action:dataActionsType): data
 
 		case DataActions.UPDATE_DICT_TABLES:
 			return {...state, dictTables: action.data}
+
+		case DataActions.UPDATE_EXPERIMENTS:
+			return {...state, experiments: action.data}
 
 		case DataActions.UPDATE_PROPERTIES:
 			return {...state, properties: action.data}

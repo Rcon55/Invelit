@@ -16,6 +16,7 @@ export type dictTablesType = {
 export interface dataStoreType {
 	samples: any[];
 	dictTables: dictTablesType;
+	experiments: any[];
 	properties: any[];
 }
 
@@ -31,6 +32,7 @@ export type selectStoreType = {
 export enum DataActions {
 	UPDATE_SAMPLES = "UPDATE_SAMPLES",
 	UPDATE_DICT_TABLES = "UPDATE_DICT_TABLES",
+	UPDATE_EXPERIMENTS = "UPDATE_EXPERIMENTS",
 	UPDATE_PROPERTIES = "UPDATE_PROPERTIES",
 }
 
@@ -49,9 +51,15 @@ interface updateDictTableAction {
 	data: dictTablesType;
 }
 
+interface updateExperimentsAction {
+	type: DataActions.UPDATE_EXPERIMENTS;
+	data: any;
+}
+
 export type dataActionsType = 	updateSamplesAction | 
 								updateDictTableAction | 
-								updatePropertiesAction;
+								updatePropertiesAction |
+								updateExperimentsAction ;
 
 //selectReduser actions types
 export enum SelectActions {
