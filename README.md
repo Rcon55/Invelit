@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/Rcon55/RockGen/blob/master/frontend/static/images/biglogo.png"></p>
+<p align="center"><img src="https://github.com/Rcon55/RockGen/blob/master/frontend/static/images/biglogo.png" width="400"></p>
 
 # RockGen
 ## О проекте
