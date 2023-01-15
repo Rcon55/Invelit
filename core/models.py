@@ -19,10 +19,10 @@ class Users(models.Model):
 class Samples(models.Model):
 	SAMPLE_ID = models.BigAutoField(primary_key=True, editable=False)
 	NAME = models.CharField(max_length=20)
-	AREA = models.CharField(max_length=50)
-	FIELD = models.CharField(max_length=50)
-	UWI = models.CharField(max_length=50)
-	WELL = models.CharField(max_length=50)
+	AREA = models.CharField(max_length=50, null=True)
+	FIELD = models.CharField(max_length=50, null=True)
+	UWI = models.CharField(max_length=50, null=True)
+	WELL = models.CharField(max_length=50, null=True)
 	AUTOR = models.CharField(max_length=50)
 	CREATE_DATE = models.DateTimeField(editable=False)
 	UPDATE_DATE = models.DateTimeField()
@@ -32,25 +32,26 @@ class Samples(models.Model):
 			self.CREATE_DATE = timezone.now()
 		self.UPDATE_DATE = timezone.now()
 		return(super(Samples, self).save(*args, **kwargs))
-	
+
 class Experiments(models.Model):
 	EXPERIMENT_ID = models.BigAutoField(primary_key=True)
 	NAME = models.CharField(max_length=20)
-	TYPE = models.CharField(max_length=20)
+	TYPE = models.CharField(max_length=20, null=True)
+	DESCRIPTION = models.CharField(max_length=200, null=True)
 	SAMPLE = models.ForeignKey("Samples", on_delete=models.CASCADE)
-	DATE = models.DateTimeField()
+	DATE = models.DateTimeField(null=True)
 	
 class Properties(models.Model):
 	EXPERIMENT = models.ForeignKey("Experiments", on_delete=models.CASCADE)
-	POROSITY = models.FloatField()
-	PERMEABILITY = models.FloatField()
-	DENSITY = models.FloatField()
+	POROSITY = models.FloatField(null=True)
+	PERMEABILITY = models.FloatField(null=True)
+	DENSITY = models.FloatField(null=True)
 
 class Saturation(models.Model):
 	EXPERIMENT = models.ForeignKey("Experiments", on_delete=models.CASCADE)
 	WATER_SATURATION = models.FloatField()
 	RESISTIVITY = models.FloatField()
-	WATER_RESISTIVITY = models.FloatField()
+	WATER_RESISTIVITY = models.FloatField(null=True)
 
 class CapillaryCurve(models.Model):
 	EXPERIMENT = models.ForeignKey("Experiments", on_delete=models.CASCADE)
