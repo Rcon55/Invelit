@@ -56,6 +56,11 @@ interface updateExperimentsAction {
 	data: any;
 }
 
+interface updatePropertiesAction {
+	type: DataActions.UPDATE_PROPERTIES;
+	data: any;
+}
+
 export type dataActionsType = 	updateSamplesAction | 
 								updateDictTableAction | 
 								updatePropertiesAction |

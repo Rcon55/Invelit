@@ -26,7 +26,7 @@ const AppMenuStoreGenerate = () => {
 	
 	return (
 		<div>
-			<TextField 
+			{/* <TextField 
 				id="generate-samples" 
 				label="Кол-во образцов" 
 				variant="outlined" 
@@ -39,16 +39,16 @@ const AppMenuStoreGenerate = () => {
 				variant="outlined" 
 				size='small'
 				sx={{ mt: 2, ml: 2, width: '40%'}}
-			/>
+			/> */}
 			<Button 
 				variant="outlined"
 				sx={{ mt: 2, ml: 2}}
 				onClick={() => genPostAPI(genAPIrequests.create_samples, {})}
 			>Создать</Button>
 
-			<br/>
+			{/* <br/>
 
-			<ModelsSelector/>
+			<ModelsSelector/> */}
 		</div>
 	)
 }

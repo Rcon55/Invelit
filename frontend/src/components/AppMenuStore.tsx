@@ -3,11 +3,19 @@ import * as React from 'react'
 import { useAppDispatch } from '../hooks/typedHooks';
 import { fetchDictTables } from '../store/actions/dictTables';
 import { fetchExperiments } from '../store/actions/experiments';
+import { fetchProperties } from '../store/actions/properties';
 import { fetchSamples } from '../store/actions/samples';
 import AppMenuStoreAnalysis from './AppMenuStoreAnalysis';
 import { AppMenuStoreLocal } from './AppMenuStoreLocal';
 import AppMenuStoreServer from './AppMenuStoreServer';
 import { TabPanel } from './elements/tabs';
+
+const get_data = (dispatch:any) => {
+	dispatch(fetchSamples())
+	dispatch(fetchDictTables())
+	dispatch(fetchExperiments())
+	dispatch(fetchProperties())
+}
 
 const AppMenuStore = () => {
 	const [state, setState] = React.useState(0);
@@ -17,10 +25,7 @@ const AppMenuStore = () => {
 		setState(newValue);
 	};
 
-	React.useEffect(() => {dispatch(fetchSamples())}, []);
-	React.useEffect(() => {dispatch(fetchDictTables())}, []);
-	React.useEffect(() => {dispatch(fetchExperiments())}, []);
-
+	React.useEffect(() => {get_data(dispatch)}, []);
 
 	return (
 		<div>

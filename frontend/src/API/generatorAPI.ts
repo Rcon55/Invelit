@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export enum genAPIrequests {
-	create_samples = 'create_samples'
+	create_samples = 'create_samples',
 }
 
 export const genPostAPI = (model: genAPIrequests, properties:any) => {

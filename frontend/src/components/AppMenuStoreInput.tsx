@@ -98,6 +98,8 @@ const AppMenuStoreInput = () => {
 		dispatch(dataGetAPI(APITable[tableName]))
 	}
 
+	console.log(store.getState().data.properties)
+
 	return(
 		<div>
 			<TableSelector 
