@@ -1,4 +1,5 @@
 from core.app.generators.basics import SamplesGen, ExperimentsGen
+from core.app.generators.fes import PermeabilityGen
 
 def generate(model:str, props = None):
 	result = None
@@ -8,4 +9,7 @@ def generate(model:str, props = None):
 	elif model == 'create_experiments':
 		Experiments = ExperimentsGen(props['SAMPLES'], 'FES')
 		result = Experiments.generate_experiments()
+	elif model == 'create_fes':
+		FES = PermeabilityGen(props['EXPERIMENTS'])
+		result = FES.create_permeability()
 	return(result)

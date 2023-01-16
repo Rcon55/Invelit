@@ -1,11 +1,10 @@
-from core.serializers import SamplesSerializer, DictFieldSerializer, ExperimentsSerializer
+from core.serializers import SamplesSerializer, DictFieldSerializer, ExperimentsSerializer, PropertiesSerializer
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.generics import CreateAPIView
 from rest_framework import status
 
-from .models import Samples, DictField, Experiments
+from .models import Samples, DictField, Experiments, Properties
 
 from core.app.generators.collector import generate
 
@@ -35,11 +34,11 @@ class SamplesView(APIView):
 			raise(Response(status=status.HTTP_400_BAD_REQUEST))
 
 class PropertiesView(APIView):
-	serializer_class = SamplesSerializer
+	serializer_class = PropertiesSerializer
 
 	def get(self, request, format=None):
-		samples = Samples.objects.all()
-		serializer = self.serializer_class(samples, many=True)
+		properties = Properties.objects.all()
+		serializer = self.serializer_class(properties, many=True)
 		return(Response(serializer.data, status=status.HTTP_200_OK))
 
 	def post(self, request, format=None):
@@ -50,9 +49,9 @@ class PropertiesView(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	def delete(self, request, format=None):
-		PKeys = request.data['SAMPLE_ID']
+		PKeys = request.data['id']
 		try:
-			for object in [Samples.objects.get(pk=key) for key in PKeys]:
+			for object in [Properties.objects.get(pk=key) for key in PKeys]:
 				object.delete()
 			return(Response(status=status.HTTP_204_NO_CONTENT))
 		except:
@@ -94,11 +93,12 @@ class GeneratorView(APIView):
 	def post(self, request, formmat=None):
 		gen_model = request.data['model']
 		samples_list = []
+		experiments_list = []
 		try:
 			serializer = SamplesSerializer(data=generate(gen_model), many=True)
 			if serializer.is_valid():
 				serializer.save()
-				[samples_list.append(sample['SAMPLE_ID']) for sample in serializer.data]
+				[samples_list.append(field['SAMPLE_ID']) for field in serializer.data]
 			else:
 				return(Response(status=status.HTTP_400_BAD_REQUEST))
 
@@ -106,8 +106,15 @@ class GeneratorView(APIView):
 			serializer = ExperimentsSerializer(data=experiments_data, many=True)
 			if serializer.is_valid():
 				serializer.save()
+				[experiments_list.append(field['EXPERIMENT_ID']) for field in serializer.data]
 			else:
-				print(serializer.errors)
+				return(Response(status=status.HTTP_400_BAD_REQUEST))
+
+			fes_data = generate('create_fes', {'EXPERIMENTS': experiments_list})
+			serializer = PropertiesSerializer(data=fes_data, many=True)
+			if serializer.is_valid():
+				serializer.save()
+			else:
 				return(Response(status=status.HTTP_400_BAD_REQUEST))
 
 

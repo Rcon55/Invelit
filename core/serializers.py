@@ -17,7 +17,7 @@ class ExperimentsSerializer(serializers.ModelSerializer):
 class PropertiesSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Properties
-		fields = ['EXPERIMENT', 'POROSITY', 'PERMEABILITY', 'DENSITY']
+		fields = ['id','EXPERIMENT', 'POROSITY', 'PERMEABILITY', 'DENSITY']
 
 class DictFieldSerializer(serializers.ModelSerializer):
 	class Meta:
