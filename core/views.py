@@ -25,7 +25,7 @@ class SamplesView(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	def delete(self, request, format=None):
-		PKeys = request.data['SAMPLE_ID']
+		PKeys = request.data
 		try:
 			for object in [Samples.objects.get(pk=key) for key in PKeys]:
 				object.delete()
@@ -49,7 +49,7 @@ class PropertiesView(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	def delete(self, request, format=None):
-		PKeys = request.data['id']
+		PKeys = request.data
 		try:
 			for object in [Properties.objects.get(pk=key) for key in PKeys]:
 				object.delete()
@@ -73,7 +73,7 @@ class ExperimentsView(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	def delete(self, request, format=None):
-		PKeys = request.data['EXPERIMENT_ID']
+		PKeys = request.data
 		try:
 			for object in [Experiments.objects.get(pk=key) for key in PKeys]:
 				object.delete()
