@@ -1,38 +1,12 @@
-import { Autocomplete, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
+import { Button, Grid } from '@mui/material'
 import * as React from 'react'
-import { InputBlockProps, TableSelectorProps } from '../../types/props'
 import {v4 as uuid} from 'uuid';
-import { useAppDispatch, useTypedSelector } from '../../hooks/typedHooks';
+import { useAppDispatch } from '../../hooks/typedHooks';
 import { APIrequests, APITable, dataGetAPI, dataPostAPI } from '../../API/dataAPI';
 import store from '../../store/store';
 import { SelectActions } from '../../types/store';
 import { TableSelector } from './../elements/selectors';
-
-const InputBlock: React.FC<InputBlockProps> = ( props ) => {
-	const { id, label, options, getValue, dataFormat} = props;
-	return(
-		<Autocomplete
-			freeSolo
-			autoSelect
-			id={id}
-			disableClearable
-			options={options}
-			onChange={(event, val) => getValue(id, val)}
-			renderInput={(params) => (
-				<TextField
-					{...params}
-					label={label}
-					InputProps={{
-						...params.InputProps,
-						type: 'search',
-					}}
-				/>
-			)}
-			sx={{ m: 2, width: '90%'}}
-			size='small'
-		/>
-	)
-}
+import { InputBlock } from '../elements/inputs';
 
 
 const AppMenuStoreInput = () => {
@@ -65,17 +39,19 @@ const AppMenuStoreInput = () => {
 		await dataPostAPI(APITable[tableName], APIrequests.DELETE_SAMPLES, selectedSamples)
 		dispatch(dataGetAPI(APITable[tableName]))
 	}
+	
 
 	return(
 		<div>
 			<TableSelector
 				list={tableList}
 				onSelect={(t) => setSelectedTable(t)}
-				defaultValue={dict[selTable].name}
+				defaultValue={dict[selTable] ? dict[selTable].name : ''}
 			/>
 			<Grid container>
 				<Grid item md={8}>
-					{Object.keys(dict[selTable].columns).map(field => 
+					{!dict[selTable] ? false :
+					Object.keys(dict[selTable].columns).map(field => 
 						!dict[selTable].columns[field].editable ? 
 						<div key={uuid()}></div> : 
 						<InputBlock 
