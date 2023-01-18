@@ -1,7 +1,7 @@
 import { Button, FormControl, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
 import * as React from 'react'
-import { genAPIrequests, genPostAPI } from '../API/generatorAPI';
-import { useTypedSelector } from '../hooks/typedHooks';
+import { genAPIrequests, genPostAPI } from '../../API/generatorAPI';
+import { useTypedSelector } from '../../hooks/typedHooks';
 
 const ModelsSelector =() => {
 	return(

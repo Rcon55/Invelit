@@ -6,6 +6,7 @@ import ScatterPlotRoundedIcon from '@mui/icons-material/ScatterPlotRounded';
 import LeaderboardRoundedIcon from '@mui/icons-material/LeaderboardRounded';
 import { TabPanel } from './elements/tabs';
 import AppChartTable from './AppChartTable';
+import AppChartPlot from './AppChartPlot';
 
 
 const AppChart = () => {
@@ -58,6 +59,15 @@ const AppChart = () => {
 				height="70vh"
 			>
 				<AppChartTable />
+			</TabPanel>
+
+			<TabPanel
+				value={state}
+				index={1}
+				id="chart"
+				height="70vh"
+			>
+				<AppChartPlot />
 			</TabPanel>
 		</div>
 	)

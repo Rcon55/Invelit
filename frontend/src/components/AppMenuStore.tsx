@@ -5,9 +5,9 @@ import { fetchDictTables } from '../store/actions/dictTables';
 import { fetchExperiments } from '../store/actions/experiments';
 import { fetchProperties } from '../store/actions/properties';
 import { fetchSamples } from '../store/actions/samples';
-import AppMenuStoreAnalysis from './AppMenuStoreAnalysis';
-import { AppMenuStoreLocal } from './AppMenuStoreLocal';
-import AppMenuStoreServer from './AppMenuStoreServer';
+import AppMenuStoreAnalysis from './storeMenu/AppMenuStoreAnalysis';
+import { AppMenuStoreLocal } from './storeMenu/AppMenuStoreLocal';
+import AppMenuStoreServer from './storeMenu/AppMenuStoreServer';
 import { TabPanel } from './elements/tabs';
 
 const get_data = (dispatch:any) => {

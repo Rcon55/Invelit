@@ -1,6 +1,8 @@
 import { Tab, Tabs } from '@mui/material'
 import * as React from 'react'
-import { TabPanel } from './elements/tabs'
+import { TabPanel } from './../elements/tabs'
+import MenuStoragesTab from './MenuStoragesTab';
+import MenuSubscribeTab from './MenuSubscribeTab';
 
 const AppMenuStoreServer = () => {
 	const [state, setState] = React.useState(0);
@@ -44,11 +46,11 @@ const AppMenuStoreServer = () => {
 			</TabPanel>
 
 			<TabPanel id={'subscribe'} value={state} index={1}>
-				<p>Подписки</p>
+				<MenuSubscribeTab />
 			</TabPanel>
 
-			<TabPanel id={'stroges'} value={state} index={2}>
-				<p>Хранилища</p>
+			<TabPanel id={'storages'} value={state} index={2}>
+				<MenuStoragesTab  />
 			</TabPanel>
 		</div>
 	)

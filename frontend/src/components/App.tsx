@@ -3,11 +3,13 @@ import * as React from 'react'
 import { Provider } from 'react-redux'
 import store from '../store/store'
 import AppChart from './AppChart'
+import AppMenuChart from './AppMenuChart'
 import AppMenuStore from './AppMenuStore'
 import AppNavbar from './AppNavbar'
 
 
 const App = () => {
+	// const [tab, setTab] = React.useState(<AppMenuStore />)
 	return (
 		<div>
 			<React.Fragment>
@@ -15,6 +17,7 @@ const App = () => {
 			</React.Fragment>
 			<Provider store={store}>
 				<Grid container spacing={0}>
+
 					<Grid item xs="auto">
 						<AppNavbar/>
 					</Grid>
@@ -25,10 +28,10 @@ const App = () => {
 								width: '100%',
 								height: '100vh',
 								borderRight: '1px solid #D5D8DC'
-								
 							}}
 						>
-							<AppMenuStore/>
+							{/* {tab} */}
+							<AppMenuStore />
 						</Box>
 					</Grid>
 

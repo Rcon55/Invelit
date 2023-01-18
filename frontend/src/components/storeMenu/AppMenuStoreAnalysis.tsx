@@ -1,6 +1,6 @@
 import { Tab, Tabs } from '@mui/material'
 import * as React from 'react'
-import { TabPanel } from './elements/tabs'
+import { TabPanel } from '../elements/tabs'
 
 const AppMenuStoreAnalysis = () => {
 	const [state, setState] = React.useState(0);

@@ -10,21 +10,30 @@ import {v4 as uuid} from 'uuid';
 
 import StorageRoundedIcon from '@mui/icons-material/StorageRounded';
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
-import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
+import AppMenuStore from './AppMenuStore';
+import AppMenuChart from './AppMenuChart';
 
-const NavbarItem = (props: any) => {
+interface NavbarItemProps {
+	icon: React.ReactNode,
+	onClick?: any,
+}
+
+const NavbarItem = ({icon, onClick} : NavbarItemProps) => {
 	return(
 		<ListItem key={uuid()} disablePadding>
-			<ListItemButton sx={{height:60}}>
+			<ListItemButton 
+				// onClick={onClick}
+				sx={{height:60}}
+			>
 				<ListItemIcon>
-					{props.icon}
+					{icon}
 				</ListItemIcon>
 			</ListItemButton>
 		</ListItem>
 	)
 }
 
-const AppNavbar = () => {
+const AppNavbar = (setValue: any) => {
 	const drawerWidth = 60;
 	return (
 		<Drawer
@@ -41,9 +50,14 @@ const AppNavbar = () => {
 		>
 			<Divider />
 			<List>
-				<NavbarItem icon={<StorageRoundedIcon/>}/>
-				<NavbarItem icon={<QueryStatsRoundedIcon/>}/>
-				<NavbarItem icon={<CalculateRoundedIcon/>}/>
+				<NavbarItem 
+					icon={<StorageRoundedIcon/>}
+					// onClick={setValue(<AppMenuStore />)}
+				/>
+				<NavbarItem 
+					icon={<QueryStatsRoundedIcon/>}
+					// onClick={setValue(<AppMenuChart />)}
+				/>
 			</List>
 		</Drawer>
 	);

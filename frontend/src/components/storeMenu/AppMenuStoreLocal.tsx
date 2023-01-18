@@ -2,7 +2,7 @@ import { Tab, Tabs } from '@mui/material';
 import * as React from 'react'
 import AppMenuStoreGenerate from './AppMenuStoreGenerate';
 import AppMenuStoreInput from './AppMenuStoreInput';
-import { TabPanel } from './elements/tabs';
+import { TabPanel } from './../elements/tabs';
 
 
 export const AppMenuStoreLocal = () => {
@@ -28,7 +28,7 @@ export const AppMenuStoreLocal = () => {
 					label='Генератор'
 					sx={{fontSize: "14px", minHeight: "10px"}}
 				/>
-				<Tab 
+				<Tab
 					component="a"
 					value={1}
 					label='Ввод'

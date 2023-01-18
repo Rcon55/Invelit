@@ -1,11 +1,12 @@
 import { Autocomplete, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
 import * as React from 'react'
-import { InputBlockProps, TableSelectorProps } from '../types/props'
+import { InputBlockProps, TableSelectorProps } from '../../types/props'
 import {v4 as uuid} from 'uuid';
-import { useAppDispatch, useTypedSelector } from '../hooks/typedHooks';
-import { APIrequests, APITable, dataGetAPI, dataPostAPI } from '../API/dataAPI';
-import store from '../store/store';
-import { SelectActions } from '../types/store';
+import { useAppDispatch, useTypedSelector } from '../../hooks/typedHooks';
+import { APIrequests, APITable, dataGetAPI, dataPostAPI } from '../../API/dataAPI';
+import store from '../../store/store';
+import { SelectActions } from '../../types/store';
+import { TableSelector } from './../elements/selectors';
 
 const InputBlock: React.FC<InputBlockProps> = ( props ) => {
 	const { id, label, options, getValue, dataFormat} = props;
@@ -33,39 +34,6 @@ const InputBlock: React.FC<InputBlockProps> = ( props ) => {
 	)
 }
 
-const TableSelector: React.FC<TableSelectorProps> = (props) => {
-	const { list, onSelect, defaultValue } = props;
-	const [table, setTable] = React.useState(defaultValue || '');
-
-	const handleChange = (event: SelectChangeEvent) => {
-		setTable(event.target.value as string);
-		onSelect(Object.keys(list).find(key => list[key].name === event.target.value));
-	};
-
-	return (
-		<FormControl
-			sx={{ m: 1, width: '300px' }}
-		>
-			<InputLabel id="select-table-input">Таблица</InputLabel>
-			<Select
-				labelId="select-table-label"
-				id="select-table"
-				value={table}
-				label="Таблица"
-				onChange={handleChange}
-			>
-				{Object.keys(list).map(item => 
-					<MenuItem 
-						value={list[item].name}
-						key={uuid()}
-					>
-						{list[item].name}
-					</MenuItem>)
-				}
-			</Select>
-		</FormControl>
-  )
-}
 
 const AppMenuStoreInput = () => {
 	const dispatch = useAppDispatch();
@@ -102,7 +70,7 @@ const AppMenuStoreInput = () => {
 
 	return(
 		<div>
-			<TableSelector 
+			<TableSelector
 				list={tableList}
 				onSelect={(t) => setSelectedTable(t)}
 				defaultValue={dict[selTable].name}
