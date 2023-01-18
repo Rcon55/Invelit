@@ -15,14 +15,14 @@ import AppMenuChart from './AppMenuChart';
 
 interface NavbarItemProps {
 	icon: React.ReactNode,
-	onClick?: any,
+	actionFunction?: any,
 }
 
-const NavbarItem = ({icon, onClick} : NavbarItemProps) => {
+const NavbarItem = ({icon, actionFunction} : NavbarItemProps) => {
 	return(
 		<ListItem key={uuid()} disablePadding>
 			<ListItemButton 
-				// onClick={onClick}
+				onClick={() => actionFunction()}
 				sx={{height:60}}
 			>
 				<ListItemIcon>
@@ -33,8 +33,13 @@ const NavbarItem = ({icon, onClick} : NavbarItemProps) => {
 	)
 }
 
-const AppNavbar = (setValue: any) => {
+const AppNavbar = (props: any) => {
 	const drawerWidth = 60;
+
+	const setState = (state:string) => {
+		props.changeState(state)
+	}
+
 	return (
 		<Drawer
 			sx={{
@@ -52,11 +57,11 @@ const AppNavbar = (setValue: any) => {
 			<List>
 				<NavbarItem 
 					icon={<StorageRoundedIcon/>}
-					// onClick={setValue(<AppMenuStore />)}
+					actionFunction={() => setState('storage')}
 				/>
 				<NavbarItem 
 					icon={<QueryStatsRoundedIcon/>}
-					// onClick={setValue(<AppMenuChart />)}
+					actionFunction={() => setState('plot')}
 				/>
 			</List>
 		</Drawer>

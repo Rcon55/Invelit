@@ -1,6 +1,7 @@
 import { Tab, Tabs } from '@mui/material'
 import * as React from 'react'
 import { TabPanel } from './../elements/tabs'
+import MenuExchangeTab from './MenuExchangeTab';
 import MenuStoragesTab from './MenuStoragesTab';
 import MenuSubscribeTab from './MenuSubscribeTab';
 
@@ -42,7 +43,7 @@ const AppMenuStoreServer = () => {
 			</Tabs>
 
 			<TabPanel id={'exchange'} value={state} index={0}>
-				<p>Обмен</p>
+				<MenuExchangeTab />
 			</TabPanel>
 
 			<TabPanel id={'subscribe'} value={state} index={1}>

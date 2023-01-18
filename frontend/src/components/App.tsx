@@ -9,7 +9,8 @@ import AppNavbar from './AppNavbar'
 
 
 const App = () => {
-	// const [tab, setTab] = React.useState(<AppMenuStore />)
+	const [menuTab, setMenuTab] = React.useState('storage')
+	
 	return (
 		<div>
 			<React.Fragment>
@@ -19,7 +20,7 @@ const App = () => {
 				<Grid container spacing={0}>
 
 					<Grid item xs="auto">
-						<AppNavbar/>
+						<AppNavbar changeState={setMenuTab}/>
 					</Grid>
 
 					<Grid item xs={4}>
@@ -30,8 +31,12 @@ const App = () => {
 								borderRight: '1px solid #D5D8DC'
 							}}
 						>
-							{/* {tab} */}
-							<AppMenuStore />
+							{	menuTab === 'storage' ?
+									<AppMenuStore /> :
+								menuTab === 'plot' ?
+									<AppMenuChart /> :
+								false
+							}
 						</Box>
 					</Grid>
 

@@ -10,13 +10,6 @@ import { AppMenuStoreLocal } from './storeMenu/AppMenuStoreLocal';
 import AppMenuStoreServer from './storeMenu/AppMenuStoreServer';
 import { TabPanel } from './elements/tabs';
 
-const get_data = (dispatch:any) => {
-	dispatch(fetchSamples())
-	dispatch(fetchDictTables())
-	dispatch(fetchExperiments())
-	dispatch(fetchProperties())
-}
-
 const AppMenuStore = () => {
 	const [state, setState] = React.useState(0);
 	const dispatch = useAppDispatch();
@@ -24,8 +17,6 @@ const AppMenuStore = () => {
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setState(newValue);
 	};
-
-	React.useEffect(() => {get_data(dispatch)}, []);
 
 	return (
 		<div>
