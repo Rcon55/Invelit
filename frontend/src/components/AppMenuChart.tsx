@@ -1,5 +1,6 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import * as React from 'react'
+import MenuSettings from './chartMenu/MenuSettings';
 import { TabPanel } from './elements/tabs';
 
 const AppMenuChart = () => {
@@ -35,7 +36,7 @@ const AppMenuChart = () => {
 			</Box>
  
 			<TabPanel id="model" value={tab} index={0}>
-				<p>Тут будут настройки визуализации</p>
+				<MenuSettings />
 			</TabPanel>
 
 			<TabPanel id="local" value={tab} index={1}>

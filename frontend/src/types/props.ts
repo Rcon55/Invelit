@@ -10,7 +10,7 @@ export interface TableSelectorProps {
 	list: {[key: string]: {
 		name: string
 		}};
-	onSelect: (state: string) => void;
+	onSelect?: (state: string) => void;
 	defaultValue?: string;
 }
 

@@ -56,11 +56,11 @@ const AppNavbar = (props: any) => {
 			<Divider />
 			<List>
 				<NavbarItem 
-					icon={<StorageRoundedIcon/>}
+					icon={<StorageRoundedIcon sx={{ fontSize: 28 }}/>}
 					actionFunction={() => setState('storage')}
 				/>
 				<NavbarItem 
-					icon={<QueryStatsRoundedIcon/>}
+					icon={<QueryStatsRoundedIcon sx={{ fontSize: 28 }}/>}
 					actionFunction={() => setState('plot')}
 				/>
 			</List>

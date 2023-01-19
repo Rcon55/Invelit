@@ -16,6 +16,7 @@ const AppChartPlot = () => {
 	const svgRef = React.useRef()
 
 	const data = useTypedSelector(state => state.data.properties);
+	const vis = useTypedSelector(state => state.vis)
 
 	React.useEffect(() => {
 		chartRender(
@@ -23,10 +24,10 @@ const AppChartPlot = () => {
 			data,
 			600,
 			600,
-			[0, 0.4],
-			[1, 10000],
-			false,
-			true,
+			[vis.min_x, vis.max_x],
+			[vis.min_y, vis.max_y],
+			vis.log_x,
+			vis.log_y,
 			true,
 			true,
 		)

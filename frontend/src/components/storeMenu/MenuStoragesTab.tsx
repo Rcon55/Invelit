@@ -7,8 +7,7 @@ const MenuStoragesTab = () => {
 	return (
 		<div>
 			<Typography variant="subtitle1" gutterBottom m={2}>
-				Вы можете выгрузить из глобального хранилища данные, входящие в следующие 
-				группы доступа:
+				Выберете набор данных для клонирования:
 			</Typography>
 			<TableSelector 
 				list={{['test']: {name: 'Тестовый набор данных'}}}
@@ -23,8 +22,8 @@ const MenuStoragesTab = () => {
 				Выгрузить
 			</Button>
 			<Typography variant="subtitle1" gutterBottom m={2}>
-				Для синхронизации глобального и локального хранилища необходимо 
-				перейти на вкладку "Обмен"
+				Эта функция нужна для создания форка глобального набора данных 
+				или для копирования собственного набора в БД
 			</Typography>
 		</div>
 	)

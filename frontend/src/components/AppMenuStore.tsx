@@ -1,4 +1,4 @@
-import { Box, Tab, Tabs } from '@mui/material'
+import { Box, Tab, Tabs, Typography } from '@mui/material'
 import * as React from 'react'
 import { useAppDispatch } from '../hooks/typedHooks';
 import { fetchDictTables } from '../store/actions/dictTables';
@@ -38,10 +38,14 @@ const AppMenuStore = () => {
 						/>
 					<Tab 
 						value={1}
-						label='Загрузка'
+						label='Клиент'
 						/>
 					<Tab 
 						value={2}
+						label='Загрузка'
+						/>
+					<Tab 
+						value={3}
 						label='Анализ'
 						/>
 				</Tabs>
@@ -51,11 +55,17 @@ const AppMenuStore = () => {
 				<AppMenuStoreServer />
 			</TabPanel>
 
-			<TabPanel id="local" value={state} index={1}>
+			<TabPanel id="client" value={state} index={1}>
+				<Typography m={2}>
+					Тут будут инструменты для работы с локальным хранилищем приложения
+				</Typography>
+			</TabPanel>
+
+			<TabPanel id="local" value={state} index={2}>
 				<AppMenuStoreLocal/>
 			</TabPanel>
 
-			<TabPanel id="analysis" value={state} index={2}>
+			<TabPanel id="analysis" value={state} index={3}>
 				<AppMenuStoreAnalysis/>
 			</TabPanel>
 
