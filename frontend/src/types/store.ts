@@ -83,3 +83,76 @@ interface updateSelectedSamplesAction {
 }
 
 export type selectActionsType = setActiveDataTableAction | updateSelectedSamplesAction;
+
+
+export interface VisStoreTypes {
+	min_x: number,
+	max_x: number,
+	min_y: number,
+	max_y: number,
+	min_z: number,
+	max_z: number,
+	log_x: boolean,
+	log_y: boolean,
+	log_z: boolean,
+}
+
+export enum VisActions {
+	SET_MIN_X = "SET_MIN_X",
+	SET_MIN_Y = "SET_MIN_Y",
+	SET_MIN_Z = "SET_MIN_Z",
+	SET_MAX_X = "SET_MAX_X",
+	SET_MAX_Y = "SET_MAX_Y",
+	SET_MAX_Z = "SET_MAX_Z",
+	SET_LOG_X = "SET_LOG_X",
+	SET_LOG_Y = "SET_LOG_Y",
+	SET_LOG_Z = "SET_LOG_Z",
+}
+
+interface SetVisSetMinXType {
+	type: VisActions.SET_MIN_X;
+	data: number;
+}
+interface SetVisSetMinYType {
+	type: VisActions.SET_MIN_Y;
+	data: number;
+}
+interface SetVisSetMinZType {
+	type: VisActions.SET_MIN_Z;
+	data: number;
+}
+interface SetVisSetMaxXType {
+	type: VisActions.SET_MAX_X;
+	data: number;
+}
+interface SetVisSetMaxYType {
+	type: VisActions.SET_MAX_Y;
+	data: number;
+}
+interface SetVisSetMaxZType {
+	type: VisActions.SET_MAX_Z;
+	data: number;
+}
+interface SetVisSetLogXType {
+	type: VisActions.SET_LOG_X;
+	data: boolean;
+}
+interface SetVisSetLogYType {
+	type: VisActions.SET_LOG_Y;
+	data: boolean;
+}
+interface SetVisSetLogZType {
+	type: VisActions.SET_LOG_Z;
+	data: boolean;
+}
+
+
+export type VisActionTypes = 	SetVisSetMinXType | 
+								SetVisSetMinYType |
+								SetVisSetMinZType |
+								SetVisSetMaxXType |
+								SetVisSetMaxYType |
+								SetVisSetMaxZType |
+								SetVisSetLogXType |
+								SetVisSetLogYType |
+								SetVisSetLogZType ;
