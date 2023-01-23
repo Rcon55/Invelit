@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime, timedelta
 from django.utils import timezone
 
 
@@ -10,11 +11,6 @@ class DictField(models.Model):
 	EDITABLE = models.BooleanField()
 	COMMENT = models.CharField(max_length=200, null=True)
 
-class Users(models.Model):
-	USER_ID = models.AutoField(primary_key=True)
-	FIRST_NAME = models.CharField(max_length=50)
-	LAST_NAME = models.CharField(max_length=50)
-	EMAIL = models.EmailField(max_length=254)
 
 class Samples(models.Model):
 	SAMPLE_ID = models.BigAutoField(primary_key=True, editable=False)

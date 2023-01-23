@@ -11,10 +11,12 @@ import Container from '@mui/material/Container';
 import axios from 'axios';
 import { useAppDispatch } from '../../hooks/typedHooks';
 import { AuthActions } from '../../store/redusers/authenticationReduser';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Login = () => {
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 	
 	function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
@@ -25,9 +27,9 @@ export const Login = () => {
 			password: data.get('password').toString(),
 		})
 		.then(function (response) {
-			dispatch({type: AuthActions, payload: response.data.token})
-			window.location.replace('/');
+			dispatch({type: AuthActions.SET_TOKEN, payload: response.data.token})
 		})
+		.then(() => navigate("/"))
 		.catch(function (error) {
 			return(error)
 		})	
