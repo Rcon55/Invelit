@@ -16,36 +16,35 @@ const App = () => {
 			<React.Fragment>
 				<GlobalStyles styles={{ body: { margin: 0 } }} />
 			</React.Fragment>
-			<Provider store={store}>
-				<Grid container spacing={0}>
+			
+			<Grid container spacing={0}>
 
-					<Grid item xs="auto">
-						<AppNavbar changeState={setMenuTab}/>
-					</Grid>
-
-					<Grid item xs={4}>
-						<Box
-							sx={{
-								width: '100%',
-								height: '100vh',
-								borderRight: '1px solid #D5D8DC'
-							}}
-						>
-							{	menuTab === 'storage' ?
-									<AppMenuStore /> :
-								menuTab === 'plot' ?
-									<AppMenuChart /> :
-								false
-							}
-						</Box>
-					</Grid>
-
-					<Grid item xs>
-						<AppChart/>
-					</Grid>
-
+				<Grid item xs="auto">
+					<AppNavbar changeState={setMenuTab}/>
 				</Grid>
-			</Provider>
+
+				<Grid item xs={4}>
+					<Box
+						sx={{
+							width: '100%',
+							height: '100vh',
+							borderRight: '1px solid #D5D8DC'
+						}}
+					>
+						{	menuTab === 'storage' ?
+								<AppMenuStore /> :
+							menuTab === 'plot' ?
+								<AppMenuChart /> :
+							false
+						}
+					</Box>
+				</Grid>
+
+				<Grid item xs>
+					<AppChart/>
+				</Grid>
+
+			</Grid>
 		</div> 
 	)
 }
