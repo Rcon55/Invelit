@@ -1,13 +1,28 @@
+#Библиотеки JS
 /frontend/node_modules
-/database
-**/env
-**/migrations
 
-*.pyc
+#Базы данных
+/database
+db.sqlite3
+
+#Архивные данные
+archive
+
+#Окружение Python
+**/env
 *.env
 
+#Файлы миграций django
+**/migrations
+
+#Кэш Python
+*.pyc
+
+
+#Docker
 docker-compose.yml
 Dockerfile
 .dockerignore
-db.sqlite3
+
+
 .DS_Store
