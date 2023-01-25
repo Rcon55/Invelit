@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/Rcon55/FSD/blob/master/frontend/static/images/biglogo.png" width="400"></p>
+<p align="center"><img src="https://github.com/Rcon55/Invelit/blob/FSD/frontend/static/images/biglogo.png" width="400"></p>
 
 ## О проекте
 
