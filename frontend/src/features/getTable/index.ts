@@ -1,11 +1,4 @@
-import { store } from "../../entities/store"
+export { getIdColumn } from "./getColumns";
+export { getHeader } from "./getColumns";
+export { getTable } from "./getTable";
 
-
-export const getTable = (tableName:string) => {
-	switch (tableName) {
-		case 'Samples': return(store.getState().data.samples)
-		case 'Properties': return(store.getState().data.properties)
-		case 'Experiments': return(store.getState().data.experiments)
-		case 'Properties': return(store.getState().data.properties)
-	}
-}

@@ -6,6 +6,7 @@ import ScatterPlotRoundedIcon from '@mui/icons-material/ScatterPlotRounded';
 import LeaderboardRoundedIcon from '@mui/icons-material/LeaderboardRounded';
 import { TabPanel } from '../../../shared/components/tabs';
 import { ChartTable } from '../../../widgets/chartTable';
+import { CrossPlot } from '../../../widgets/CrossPlot';
 
 
 export const Charts = () => {
@@ -60,14 +61,14 @@ export const Charts = () => {
 				<ChartTable />
 			</TabPanel>
 
-			{/* <TabPanel
+			<TabPanel
 				value={state}
 				index={1}
 				id="chart"
 				height="70vh"
 			>
-				<AppChartPlot />
-			</TabPanel> */}
+				<CrossPlot />
+			</TabPanel>
 		</div>
 	)
 }

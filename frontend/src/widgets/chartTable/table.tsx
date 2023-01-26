@@ -1,20 +1,18 @@
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridColumns } from '@mui/x-data-grid';
 import React from 'react'
-import { useAppDispatch, useTypedSelector } from '../../entities';
+import { useAppDispatch } from '../../entities';
 import { statesActions } from '../../entities/store/states/actions';
-import { getTable } from '../../features/getTable';
-import { prepareHeader } from '../../features/prepareTableForChart';
 
-export const Table = () => {
+interface TableType {
+	table: any,
+	columns: GridColumns<any>,
+	pk: string,
+}
+
+export const Table = ({table, columns, pk}: TableType) => {
 	const dispatch = useAppDispatch();
-	const activeTable = useTypedSelector(state => state.states.activeDataTable);
-	const dict = useTypedSelector(state => state.data.dictTables[activeTable]);
-
-	let selectedSamples = []
 	
-	const table = getTable(activeTable)
-	const columns = prepareHeader(table, dict)
-
+	let selectedSamples = []
 	const setSelectionModel = (selectionModel: any[]) => {
 		selectedSamples = selectionModel
 		dispatch({type: statesActions.UPDATE_SELECTED_SAMPLES, data: selectionModel})
@@ -26,7 +24,7 @@ export const Table = () => {
 				checkboxSelection={true} 
 				rows={table} 
 				columns={columns}
-				getRowId={(row) => row['PK']}
+				getRowId={(row) => row[pk]}
 				onSelectionModelChange={(newSelectionModel) => {
 					setSelectionModel(newSelectionModel)}}
 			/>

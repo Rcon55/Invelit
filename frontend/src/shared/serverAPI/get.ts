@@ -2,9 +2,7 @@ import axios from "axios";
 
 export async function getRequest (url: string) {
 	try {
-		axios.get(url)
-			.then(function (response) { return(response) })
-			.catch(function (error) { return(error) })
+		return await axios.get(url)
 	} catch(error) {
 		return(error)
 	}

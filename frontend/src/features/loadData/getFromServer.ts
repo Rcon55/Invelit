@@ -18,7 +18,7 @@ export const fetchSamples = () => {
 export const fetchProperties = () => {
 	return async (dispatch: Dispatch<dataActionsType>) => {
 		try {
-			const response = await getRequest('core/samples/');
+			const response = await getRequest('core/properties/');
 			dispatch({type: dataActions.UPDATE_PROPERTIES, payload: response.data})
 		} catch (error) {
 			return(error)

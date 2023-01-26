@@ -1,10 +1,12 @@
 import { Grid } from '@mui/material'
 import React, { useState } from 'react'
+import { store } from '../../entities/store'
 import { Charts } from './charts'
 import { Menu } from './menu'
 import { Sidebar } from './sidebar'
 
 export const WorkPage = () => {
+	console.log(store.getState().setup.token)
 
 	return (
 		<Grid container spacing={0}>
