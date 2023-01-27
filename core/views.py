@@ -1,15 +1,15 @@
-from core.serializers import SamplesSerializer, DictFieldSerializer, ExperimentsSerializer, PropertiesSerializer
+import core.serializers as serializers
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Samples, DictField, Experiments, Properties
+from .models import Samples, DictField, Experiments, Properties, Groups
 
 from core.app.generators.collector import generate
 
 class SamplesView(APIView):
-	serializer_class = SamplesSerializer
+	serializer_class = serializers.SamplesSerializer
 
 	def get(self, request, format=None):
 		samples = Samples.objects.all()
@@ -32,9 +32,15 @@ class SamplesView(APIView):
 			return(Response(status=status.HTTP_204_NO_CONTENT))
 		except:
 			raise(Response(status=status.HTTP_400_BAD_REQUEST))
+class GroupsView(APIView):
+	serializer_class = serializers.GroupsSerializer
 
+	def get(self, request, format=None):
+		groups = Groups.objects.all()
+		serializer = self.serializer_class(groups, many=True)
+		return(Response(serializer.data, status=status.HTTP_200_OK))
 class PropertiesView(APIView):
-	serializer_class = PropertiesSerializer
+	serializer_class = serializers.PropertiesSerializer
 
 	def get(self, request, format=None):
 		properties = Properties.objects.all()
@@ -58,7 +64,7 @@ class PropertiesView(APIView):
 			raise(Response(status=status.HTTP_400_BAD_REQUEST))
 
 class ExperimentsView(APIView):
-	serializer_class = ExperimentsSerializer
+	serializer_class = serializers.ExperimentsSerializer
 
 	def get(self, request, format=None):
 		experiments = Experiments.objects.all()
@@ -82,7 +88,7 @@ class ExperimentsView(APIView):
 			raise(Response(status=status.HTTP_400_BAD_REQUEST))
 
 class DictFieldView(APIView):
-	serializer_class = DictFieldSerializer
+	serializer_class = serializers.DictFieldSerializer
 	def get(self, request, format=None):
 		dictfield = DictField.objects.all()
 		serializer = self.serializer_class(dictfield, many=True)
@@ -92,26 +98,50 @@ class DictFieldView(APIView):
 class GeneratorView(APIView):
 	def post(self, request, formmat=None):
 		gen_model = request.data['model']
+		group_name = request.data['group_name']
+		number_of_samples = int(request.data['number_of_samples'])
+		username = request.user.username
 		samples_list = []
 		experiments_list = []
+		group = None
 		try:
-			serializer = SamplesSerializer(data=generate(gen_model), many=True)
+			#Создаем группу образцов
+			serializer = serializers.GroupsSerializer(data=generate('create_group',
+				{	'name': group_name, 
+					'autor': username, 
+					'description': '',
+					'origin': 0}), many=True)
 			if serializer.is_valid():
 				serializer.save()
-				[samples_list.append(field['SAMPLE_ID']) for field in serializer.data]
+				group = serializer.data[0]['group_id']
 			else:
 				return(Response(status=status.HTTP_400_BAD_REQUEST))
 
-			experiments_data = generate('create_experiments', {'SAMPLES': samples_list})
-			serializer = ExperimentsSerializer(data=experiments_data, many=True)
+			#Создаем образцы
+			serializer = serializers.SamplesSerializer(data=generate('create_samples',
+				{	'n': number_of_samples, 
+					'autor': username, 
+					'group': group}), many=True)
 			if serializer.is_valid():
 				serializer.save()
-				[experiments_list.append(field['EXPERIMENT_ID']) for field in serializer.data]
+				[samples_list.append(field['sample_id']) for field in serializer.data]
 			else:
 				return(Response(status=status.HTTP_400_BAD_REQUEST))
 
-			fes_data = generate('create_fes', {'EXPERIMENTS': experiments_list})
-			serializer = PropertiesSerializer(data=fes_data, many=True)
+			#Создаем эксперименты
+			experiments_data = generate('create_experiments', 
+			{	'samples': samples_list,
+				'experiment_type': 'FES'})
+			serializer = serializers.ExperimentsSerializer(data=experiments_data, many=True)
+			if serializer.is_valid():
+				serializer.save()
+				[experiments_list.append(field['experiment_id']) for field in serializer.data]
+			else:
+				return(Response(status=status.HTTP_400_BAD_REQUEST))
+
+			#Создаем свойства
+			fes_data = generate('create_fes', {'experiments': experiments_list})
+			serializer = serializers.PropertiesSerializer(data=fes_data, many=True)
 			if serializer.is_valid():
 				serializer.save()
 			else:

@@ -4,52 +4,61 @@ from django.utils import timezone
 
 
 class DictField(models.Model):
-	TABLE_NAME = models.CharField(max_length=50)
-	TABLE_DESC = models.CharField(max_length=50)
-	COLUMN_NAME = models.CharField(max_length=50)
-	COLUMN_DESC = models.CharField(max_length=50)
-	EDITABLE = models.BooleanField()
-	COMMENT = models.CharField(max_length=200, null=True)
+	table_name = models.CharField(max_length=50)
+	table_desc = models.CharField(max_length=50)
+	column_name = models.CharField(max_length=50)
+	column_desc = models.CharField(max_length=50)
+	editable = models.BooleanField()
+	comment = models.CharField(max_length=200, null=True)
+
+class Groups(models.Model):
+	group_id = models.BigAutoField(primary_key=True, editable=False)
+	name = models.CharField(max_length=50)
+	autor = models.CharField(max_length=50)
+	description = models.CharField(max_length=200, blank=True)
+	origin = models.IntegerField(null=True)
 
 
 class Samples(models.Model):
-	SAMPLE_ID = models.BigAutoField(primary_key=True, editable=False)
-	NAME = models.CharField(max_length=20)
-	AREA = models.CharField(max_length=50, null=True)
-	FIELD = models.CharField(max_length=50, null=True)
-	UWI = models.CharField(max_length=50, null=True)
-	WELL = models.CharField(max_length=50, null=True)
-	AUTOR = models.CharField(max_length=50)
-	CREATE_DATE = models.DateTimeField(editable=False)
-	UPDATE_DATE = models.DateTimeField()
+	sample_id = models.BigAutoField(primary_key=True, editable=False)
+	# group = models.ForeignKey("Groups", on_delete=models.CASCADE)
+	group = models.BigIntegerField()
+	name = models.CharField(max_length=20)
+	area = models.CharField(max_length=50, null=True)
+	field = models.CharField(max_length=50, null=True)
+	uwi = models.CharField(max_length=50, null=True)
+	well = models.CharField(max_length=50, null=True)
+	autor = models.CharField(max_length=50)
+	create_date = models.DateTimeField(editable=False)
+	update_date = models.DateTimeField()
 
 	def save(self, *args, **kwargs):
-		if not self.SAMPLE_ID:
-			self.CREATE_DATE = timezone.now()
-		self.UPDATE_DATE = timezone.now()
+		if not self.sample_id:
+			self.create_date = timezone.now()
+		self.update_date = timezone.now()
 		return(super(Samples, self).save(*args, **kwargs))
 
 class Experiments(models.Model):
-	EXPERIMENT_ID = models.BigAutoField(primary_key=True)
-	NAME = models.CharField(max_length=20)
-	TYPE = models.CharField(max_length=20, null=True)
-	DESCRIPTION = models.CharField(max_length=200, null=True)
-	SAMPLE = models.ForeignKey("Samples", on_delete=models.CASCADE)
-	DATE = models.DateTimeField(null=True)
+	experiment_id = models.BigAutoField(primary_key=True)
+	name = models.CharField(max_length=20)
+	experiment_type = models.CharField(max_length=20, null=True)
+	description = models.CharField(max_length=200, blank=True)
+	sample = models.ForeignKey("Samples", on_delete=models.CASCADE)
+	date = models.DateTimeField(null=True)
 	
 class Properties(models.Model):
-	EXPERIMENT = models.ForeignKey("Experiments", on_delete=models.CASCADE)
-	POROSITY = models.FloatField(null=True)
-	PERMEABILITY = models.FloatField(null=True)
-	DENSITY = models.FloatField(null=True)
+	experiment = models.ForeignKey("Experiments", on_delete=models.CASCADE)
+	porosity = models.FloatField(null=True)
+	permeability = models.FloatField(null=True)
+	density = models.FloatField(null=True)
 
 class Saturation(models.Model):
-	EXPERIMENT = models.ForeignKey("Experiments", on_delete=models.CASCADE)
-	WATER_SATURATION = models.FloatField()
-	RESISTIVITY = models.FloatField()
-	WATER_RESISTIVITY = models.FloatField(null=True)
+	experiment = models.ForeignKey("Experiments", on_delete=models.CASCADE)
+	water_saturation = models.FloatField()
+	resistivity = models.FloatField()
+	water_resistivity = models.FloatField(null=True)
 
 class CapillaryCurve(models.Model):
-	EXPERIMENT = models.ForeignKey("Experiments", on_delete=models.CASCADE)
-	PRESSURE = models.FloatField()
-	WATER_SATURATION = models.FloatField()
+	experiment = models.ForeignKey("Experiments", on_delete=models.CASCADE)
+	pressure = models.FloatField()
+	water_saturation = models.FloatField()

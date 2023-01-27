@@ -5,7 +5,7 @@ from core.app.generators.basics import Methods
 class PorosityGen:
 	def __init__(self, experiments_list: list) -> None:
 		self.experiments_list = experiments_list
-		self.df = pd.DataFrame(columns=['EXPERIMENT', 'POROSITY', 'DENSITY'])
+		self.df = pd.DataFrame(columns=['experiment', 'porosity', 'density'])
 
 	def random_normal(self, mu, sigma):
 		res = mu + sigma * np.random.randn() / np.pi
@@ -36,7 +36,7 @@ class PermeabilityGen(PorosityGen):
 	def __init__(self, experiments_list: list) -> None:
 		super().__init__(experiments_list)
 		self.create_porosity()
-		self.df['PERMEABILITY'] = self.df['POROSITY']
+		self.df['permeability'] = self.df['porosity']
 
 		self.min_p = self.random_normal(0.08, 0.02)
 		self.max_p = self.random_normal(0.38, 0.02)
@@ -50,5 +50,5 @@ class PermeabilityGen(PorosityGen):
 		return(perm)
 	
 	def create_permeability(self):
-		self.df['PERMEABILITY'] = self.df['POROSITY'].apply(self.lin_log)
+		self.df['permeability'] = self.df['porosity'].apply(self.lin_log)
 		return(Methods.get_json(self.df))

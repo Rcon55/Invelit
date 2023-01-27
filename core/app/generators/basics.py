@@ -16,21 +16,35 @@ class Methods:
 	def get_json(DataFrame: pd.DataFrame):
 		return(json.loads(DataFrame.to_json(orient="records")))
 
+class GroupGen:
+	def __init__(self, name: str, autor: str, description, origin) -> None:
+		self.df = pd.DataFrame(	[[name, autor, description, origin]], 
+								columns=['name', 'autor', 'description', 'origin'])
+	
+	def generate_group(self) -> json:
+		json_file = Methods.get_json(self.df)
+		return(json_file)
+
+
+ 
 class SamplesGen:
-	def __init__(self, n: int) -> None:
+	def __init__(self, n: int, autor: str, group: int) -> None:
 		self.n = n
-		self.df = pd.DataFrame(columns=['NAME', 'AREA', 'FIELD', 'UWI', 'WELL', 'AUTOR'])
+		self.autor = autor
+		self.group = group
+		self.df = pd.DataFrame(columns=['name', 'group', 'area', 'field', 'uwi', 'well', 'autor'])
 
 	def generate_samples(self) -> json:
 		area = Methods.random_name()
 		field = Methods.random_name()
 		uwi = 'S_'+ str(random.randint(1000000, 9999999))
 		well = 'S_'+ str(random.randint(100, 99999))
-		autor = 'Random'
+		autor = self.autor
+		group = self.group
 
 		for i in range(self.n):
 			name = '{}_GEN'.format(i)
-			self.df.loc[len(self.df)] = [name, area, field, uwi, well, autor]
+			self.df.loc[len(self.df)] = [name, group, area, field, uwi, well, autor]
 
 		json_file = Methods.get_json(self.df)
 		return(json_file)
@@ -40,13 +54,16 @@ class ExperimentsGen:
 	def __init__(self, samples: list, experiment_type: str) -> None:
 		self.samples = samples
 		self.experiment_type = experiment_type
-		self.df = pd.DataFrame(columns=['NAME', 'TYPE', 'DESCRIPTION', 'SAMPLE', 'DATE'])
+		self.df = pd.DataFrame(columns=['name', 'experiment_type', 'description', 'sample', 'date'])
 
 	def _create_information(self):
 		if self.experiment_type == 'FES':
 			self.type = 'Исследования ФЕС'
 			self.description = """Сгенерированные исследования ФЕС 
 			по методу случайного нормального распределения"""
+		else:
+			self.type = 'Неизвестно'
+			self.description = 'Неизвестно'
 
 	def generate_experiments(self) -> json:
 		self._create_information()
