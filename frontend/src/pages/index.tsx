@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Routes,  Navigate, useNavigate } from 'react-router-dom'
 import { useTypedSelector } from '../entities'
-import { store } from '../entities/store'
 import { LoginPage } from './loginPage/index'
 import { WorkPage } from './workPage'
 

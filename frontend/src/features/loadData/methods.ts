@@ -4,22 +4,22 @@ export function prepareDictTables (dict: any): any {
 	const tables: dictTablesType = {};
 
 	for (let row of dict) {
-		if (!(row.TABLE_NAME in tables)) {
-			tables[row.TABLE_NAME] = {
-				name: row.TABLE_DESC,
+		if (!(row.table_name in tables)) {
+			tables[row.table_name] = {
+				name: row.table_desc,
 				columns: {
-					[row.COLUMN_NAME]: {
-						name: row.COLUMN_DESC,
-						editable: row.EDITABLE
+					[row.column_name]: {
+						name: row.column_desc,
+						editable: row.editable
 					}
 				}
 			}
 		} else {
-			tables[row.TABLE_NAME].columns = {
-				...tables[row.TABLE_NAME].columns,
-				[row.COLUMN_NAME]: {
-					name: row.COLUMN_DESC,
-					editable: row.EDITABLE
+			tables[row.table_name].columns = {
+				...tables[row.table_name].columns,
+				[row.column_name]: {
+					name: row.column_desc,
+					editable: row.editable
 				}
 			}
 		}

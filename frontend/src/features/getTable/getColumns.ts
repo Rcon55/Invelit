@@ -12,10 +12,9 @@ export const getHeader = (table: string): GridColumns<any> => {
 			hide: dict.columns[col].name === 'PK' ? true : false,
 			headerName: dict.columns[col].name,
 			editable: false,
-			flex: 0,
+			flex: 1,
 		})
 	}
-	console.log(columns)
 	return(columns)
 }
 

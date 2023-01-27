@@ -6,8 +6,6 @@ import { Menu } from './menu'
 import { Sidebar } from './sidebar'
 
 export const WorkPage = () => {
-	console.log(store.getState().setup.token)
-
 	return (
 		<Grid container spacing={0}>
 

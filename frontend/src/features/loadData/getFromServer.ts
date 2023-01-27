@@ -30,7 +30,7 @@ export const fetchExperiments = () => {
 	return async (dispatch: Dispatch<dataActionsType>) => {
 		try {
 			const response = await getRequest('core/experiments');
-			dispatch({type: dataActions.UPDATE_EXPERIMENTS, payload: response.data});
+			dispatch({type: dataActions.UPDATE_EXPERIMENTS, payload: response.data})
 		} catch (error) {
 			return(error)
 		}

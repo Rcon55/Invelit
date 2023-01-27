@@ -32,10 +32,6 @@ export const InputTab = () => {
 		values[field] = value 
 	}
 
-	//Формирование списка таблиц для селектора
-	const tableList: any = {};
-	Object.keys(dict).map(table => tableList[table] = {name: dict[table].name});
-
 	async function sendPost (tableName: string, values: any) {
 		await sendToServer(DataRequests.ADD_SAMPLE, values)
 	}
@@ -49,7 +45,7 @@ export const InputTab = () => {
 	return(
 		<div>
 			<TableSelector
-				list={tableList}
+				label={"Таблица"}
 				onSelect={(t) => setSelectedTable(t)}
 				defaultValue={dict[selTable] ? dict[selTable].name : ''}
 			/>

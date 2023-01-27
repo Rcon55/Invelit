@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import { useTypedSelector } from '../../entities';
+import { store } from '../../entities/store';
 import { getTable, getHeader, getIdColumn } from '../../features/getTable';
 import { TableMenu } from './menu'
 import { Table } from './table'
 
 export const ChartTable = () => {
-	const [state, setState] = useState()
 	const activeTable = useTypedSelector(state => state.states.activeDataTable)
 	const table = getTable(activeTable)
-	const columns = table[0] ? getHeader(activeTable) : false
-	const pk = table[0] ? getIdColumn(activeTable) : false
+	const columns = table && table[0] && getHeader(activeTable)
+	const pk = table && table[0] && getIdColumn(activeTable)
 
 	return (
 		<div>
 			<TableMenu />
-			{(!table[0] || !columns || !pk) ? false :
+			{(!table || !table[0] || !columns || !pk) ? false :
 				<Table 
 				table={table}
 				columns={columns}

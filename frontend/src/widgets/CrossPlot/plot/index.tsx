@@ -23,9 +23,9 @@ export const Plot = () => {
 			true,
 			true,
 		)
-	return () => {
-		d3.selectAll("ChartPlot").remove();
-	}
+		// return () => {
+		// 	d3.selectAll("ChartPlot").remove();
+		// } 
 	})
 	
 	return (

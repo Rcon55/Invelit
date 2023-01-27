@@ -9,10 +9,10 @@ export const StoragesTab = () => {
 			<Typography variant="subtitle1" gutterBottom m={2}>
 				Выберете набор данных для клонирования:
 			</Typography>
-			<TableSelector 
+			{/* <TableSelector 
 				list={{['test']: {name: 'Тестовый набор данных'}}}
 				onSelect={setDataKit}
-			/>
+			/> */}
 			<br/>
 			<Button
 				variant="contained"

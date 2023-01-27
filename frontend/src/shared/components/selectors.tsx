@@ -1,42 +1,51 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import * as React from "react";
 import {v4 as uuid} from 'uuid';
+import { useTypedSelector } from "../../entities";
 
 interface TableSelectorProps {
-	list: {[key: string]: {
-		name: string
-		}};
+	label: string;
 	onSelect?: (state: string) => void;
 	defaultValue?: string;
+	size?: "small" | "medium";
+	width?: string;
 }
 
 
-export const TableSelector = ({list, onSelect, defaultValue}: TableSelectorProps) => {
-	const [table, setTable] = React.useState(defaultValue || '');
+export const TableSelector = ({	label,
+								onSelect, 
+								defaultValue, 
+								size, 
+								width,
+							}: TableSelectorProps) => {
+	const [table, setTable] = React.useState('')
+
+	const tables:any = {}
+	const dict = useTypedSelector(state => state.data.dictTables)
+	Object.keys(dict).map(table => tables[table] = {name: dict[table].name})
 
 	const handleChange = (event: SelectChangeEvent) => {
+		onSelect(Object.keys(tables).find(key => tables[key].name === event.target.value));
 		setTable(event.target.value as string);
-		onSelect(Object.keys(list).find(key => list[key].name === event.target.value));
-	};
-
+	}
+ 
 	return (
 		<FormControl
-			sx={{ m: 1, width: '300px' }}
+			sx={{ m: 1, width: width || "300px" }}
 		>
-			<InputLabel id="select-table-input">Таблица</InputLabel>
+			<InputLabel id={uuid()}>{label}</InputLabel>
 			<Select
-				labelId="select-table-label"
-				id="select-table"
+				id={uuid()}
 				value={table}
-				label="Таблица"
 				onChange={handleChange}
+				size={size || 'medium'}
 			>
-				{Object.keys(list).map(item => 
+				{Object.keys(tables).map(item => 
 					<MenuItem
-						value={list[item].name}
+						value={tables[item].name}
 						key={uuid()}
 					>
-						{list[item].name}
+						{tables[item].name}
 					</MenuItem>)
 				}
 			</Select>
