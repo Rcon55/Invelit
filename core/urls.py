@@ -3,6 +3,7 @@ from django.urls import path
 from .views import * 
 
 urlpatterns = [
+    path('datapack/', DataPackView.as_view()),
     path('samples/', SamplesView.as_view()),
     path('groups/', GroupsView.as_view()),
     path('experiments/', ExperimentsView.as_view()),
