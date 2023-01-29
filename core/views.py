@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Samples, DictField, Experiments, Properties, Groups
+from .models import Samples, DictField, Experiments, Properties, Groups, Storage
 
 from core.app.generators.collector import generate
 
@@ -39,6 +39,7 @@ class DataPackView(APIView):
 
 		return(Response(bundle, status=status.HTTP_200_OK))
 
+
 class SamplesView(APIView):
 	serializer_class = serializers.SamplesSerializer
 
@@ -70,6 +71,24 @@ class GroupsView(APIView):
 		groups = Groups.objects.all()
 		serializer = self.serializer_class(groups, many=True)
 		return(Response(serializer.data, status=status.HTTP_200_OK))
+
+	def delete(self, request, format=None):
+		key = request.query_params['key']
+		try:
+			Groups.objects.get(pk=key).delete()
+			return(Response(status=status.HTTP_204_NO_CONTENT))
+		except:
+			raise(Response(status=status.HTTP_400_BAD_REQUEST))
+
+class StorageView(APIView):
+	serializer_class = serializers.StorageSerializer
+
+	def get(self, request, format=None):
+		public_storage = Storage.objects.filter(public = True)
+		serializer = self.serializer_class(public_storage, many=True)
+		return(Response(serializer.data, status=status.HTTP_200_OK))
+
+
 class PropertiesView(APIView):
 	serializer_class = serializers.PropertiesSerializer
 
@@ -129,6 +148,7 @@ class DictFieldView(APIView):
 class GeneratorView(APIView):
 	def post(self, request, formmat=None):
 		gen_model = request.data['model']
+		description = request.data['description']
 		group_name = request.data['group_name']
 		number_of_samples = int(request.data['number_of_samples'])
 		username = request.user.username
@@ -140,7 +160,7 @@ class GeneratorView(APIView):
 			serializer = serializers.GroupsSerializer(data=generate('create_group',
 				{	'name': group_name, 
 					'autor': username, 
-					'description': '',
+					'description': description,
 					'origin': 0}), many=True)
 			if serializer.is_valid():
 				serializer.save()

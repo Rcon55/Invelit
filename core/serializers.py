@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Samples, DictField, Properties, Experiments, Groups
+from .models import Samples, DictField, Properties, Experiments, Groups, Storage
 
 class SamplesSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -7,6 +7,12 @@ class SamplesSerializer(serializers.ModelSerializer):
 		fields = ['sample_id', 'group', 'name', 'area', 'field', 'uwi', 'well', 
 			'autor', 'create_date', 'update_date']
 		read_only_fields = ['sample_id', 'create_date', 'update_date', 'autor']
+
+class StorageSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Storage
+		fields = ['group', 'name', 'autor', 'description', 'public', 'secret_key']
+		read_only_fields = ['autor']
 
 class GroupsSerializer(serializers.ModelSerializer):
 	class Meta:

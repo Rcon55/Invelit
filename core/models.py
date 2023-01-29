@@ -18,11 +18,17 @@ class Groups(models.Model):
 	description = models.CharField(max_length=200, blank=True)
 	origin = models.IntegerField(null=True)
 
+class Storage(models.Model):
+	group = models.ForeignKey("Groups", on_delete=models.CASCADE)
+	name = models.CharField(max_length=50)
+	autor = models.CharField(max_length=50)
+	description = models.CharField(max_length=200, blank=True)
+	public = models.BooleanField()
+	secret_key = models.CharField(max_length=200, blank=True)
 
 class Samples(models.Model):
 	sample_id = models.BigAutoField(primary_key=True, editable=False)
-	# group = models.ForeignKey("Groups", on_delete=models.CASCADE)
-	group = models.BigIntegerField()
+	group = models.ForeignKey("Groups", on_delete=models.CASCADE)
 	name = models.CharField(max_length=20)
 	area = models.CharField(max_length=50, null=True)
 	field = models.CharField(max_length=50, null=True)
