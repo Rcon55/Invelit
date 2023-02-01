@@ -6,9 +6,13 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function SignUp() {
+	const navigate = useNavigate()
+
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -16,6 +20,18 @@ export default function SignUp() {
 			email: data.get('email'),
 			password: data.get('password'),
 		});
+
+		axios.post('/accounts/registration/', { 
+			first_name: data.get('firstName').toString(),
+			last_name: data.get('lastName').toString(),
+			username: data.get('username').toString(),
+			email: data.get('email').toString(),
+			password: data.get('password').toString(),
+		})
+		.then(() => navigate("/login/"))
+		.catch(function (error) {
+			return(error)
+		})
   };
 
   	return (
