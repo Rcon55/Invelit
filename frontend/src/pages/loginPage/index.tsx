@@ -74,14 +74,14 @@ export const LoginPage = () => {
 					</Button>
 
 					<Grid container>
-						<Grid item xs>
+						{/* <Grid item xs>
 							<Link href="#" variant="body2">
 								Забыли пароль?
 							</Link>
-						</Grid>
+						</Grid> */}
 
 						<Grid item>
-							<Link href="#" variant="body2">
+							<Link href="/registration/" variant="body2">
 								{"Зарегистрировать аккаунт"}
 							</Link>
 						</Grid>

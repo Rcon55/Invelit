@@ -1,10 +1,10 @@
 import { Tab, Tabs } from '@mui/material';
 import React from 'react'
 import { TabPanel } from '../../../../shared/components/tabs';
-import { DataMenu } from '../../../../widgets/dataMenu';
+import { FiltersMenu } from '../../../../widgets/filtersMenu';
 import { VisMenu } from '../../../../widgets/visualization';
 
-export const SettingsTab = () => {
+export const DataTab = () => {
 	const [state, setState] = React.useState(0);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -24,7 +24,7 @@ export const SettingsTab = () => {
 				<Tab
 					component="a"
 					value={0}
-					label='Данные'
+					label='Фильтры'
 					sx={{fontSize: "14px", minHeight: "10px"}}
 				/>
 				<Tab 
@@ -37,7 +37,7 @@ export const SettingsTab = () => {
 			</Tabs>
 
 			<TabPanel id={'dataTab'} value={state} index={0}>
-				<DataMenu />
+				<FiltersMenu />
 			</TabPanel>
 
 			<TabPanel id={'visTab'} value={state} index={1}>

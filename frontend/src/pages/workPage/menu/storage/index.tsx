@@ -37,12 +37,12 @@ export const Storage = () => {
 						/>
 					<Tab 
 						value={2}
-						label='Загрузка'
+						label='Операции'
 						/>
-					<Tab 
+					{/* <Tab 
 						value={3}
 						label='Анализ'
-						/>
+						/> */}
 				</Tabs>
 			</Box>
  
@@ -60,9 +60,9 @@ export const Storage = () => {
 				<Load />
 			</TabPanel>
 
-			<TabPanel id="analysis" value={state} index={3}>
+			{/* <TabPanel id="analysis" value={state} index={3}>
 				<Analysis />
-			</TabPanel>
+			</TabPanel> */}
 
 		</div>
 	)

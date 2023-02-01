@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Tab, Tabs } from '@mui/material';
 import { TabPanel } from '../../../../shared/components/tabs';
-import { SettingsTab } from './settings';
+import { DataTab } from './dataTab';
 
 export const Charts = () => {
 	const [tab, setTab] = React.useState(0);
@@ -26,7 +26,7 @@ export const Charts = () => {
 				>
 					<Tab
 						value={0}
-						label='Настройки'
+						label='Данные'
 						/>
 					<Tab 
 						value={1}
@@ -35,11 +35,11 @@ export const Charts = () => {
 				</Tabs>
 			</Box>
  
-			<TabPanel id="model" value={tab} index={0}>
-				<SettingsTab />
+			<TabPanel id="data" value={tab} index={0}>
+				<DataTab />
 			</TabPanel>
 
-			<TabPanel id="local" value={tab} index={1}>
+			<TabPanel id="models" value={tab} index={1}>
 				<p>Тут будут аппроксисирующие функции и распределения</p>
 			</TabPanel>
 		</div>

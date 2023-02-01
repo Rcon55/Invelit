@@ -30,15 +30,15 @@ export const Load = () => {
 				<Tab
 					component="a"
 					value={1}
-					label='Ввод'
+					label='Ручная коррекция'
 					sx={{fontSize: "14px", minHeight: "10px"}}
 				/>
-				<Tab 
+				{/* <Tab 
 					component="a"
 					value={2}
 					label='Файл'
 					sx={{fontSize: "14px", minHeight: "10px"}}
-				/>
+				/> */}
 			</Tabs>
 
 			<TabPanel id={'generate'} value={state} index={0}>
@@ -49,9 +49,9 @@ export const Load = () => {
 				<InputTab/>
 			</TabPanel>
 
-			<TabPanel id={'file'} value={state} index={2}>
+			{/* <TabPanel id={'file'} value={state} index={2}>
 				<p>Загрузка данных из файла</p>
-			</TabPanel>
+			</TabPanel> */}
 		</div>
 	) 
 }
