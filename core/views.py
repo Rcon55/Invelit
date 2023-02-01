@@ -1,3 +1,4 @@
+from django.db import transaction
 import core.serializers as serializers
 
 from rest_framework.views import APIView
@@ -5,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .models import Samples, DictField, Experiments, Properties, Groups, Storage
-
+from core.actions.group_bundle import update_group_bundle
 from core.app.generators.collector import generate
 
 class DataPackView(APIView):
@@ -39,6 +40,8 @@ class DataPackView(APIView):
 
 		return(Response(bundle, status=status.HTTP_200_OK))
 
+	def post(self, request, format=None):
+		return(update_group_bundle(request.data))
 
 class SamplesView(APIView):
 	serializer_class = serializers.SamplesSerializer
@@ -49,7 +52,6 @@ class SamplesView(APIView):
 		return(Response(serializer.data, status=status.HTTP_200_OK))
 
 	def post(self, request, format=None):
-		print(type(request.data))
 		serializer = self.serializer_class(data=request.data)
 		if serializer.is_valid():
 			serializer.save()
