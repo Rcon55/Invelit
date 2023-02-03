@@ -1,26 +1,26 @@
-import { Button } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React from 'react'
-import { useAppDispatch } from '../../entities'
-import { fetchDictTables, fetchExperiments, fetchProperties, fetchSamples } from '../../features/loadData'
+import { DownloadGroup, UploadGroup } from './elements'
 
 export const ExchangeTab = () => {
-	const dispatch = useAppDispatch()
-
-	const downloadData = (dispatch:any) => {
-		dispatch(fetchSamples())
-		dispatch(fetchExperiments())
-		dispatch(fetchDictTables())
-		dispatch(fetchProperties())
-	}
 	return (
 		<div>
-			<Button
-				variant="outlined"
-				sx={{ m: 1}}
-				onClick={() => downloadData(dispatch)}
-			>
-				Выгрузить данные с сервера
-			</Button>
+			<Box sx={{height: '300px'}}>
+				<Typography m={1}>
+					Вы можете загрузить с сервера эти наборы данных:
+				</Typography>
+
+				<DownloadGroup />
+			</Box>
+
+			<Box sx={{height: '300px'}}>
+				<Typography m={1}>
+					Вы можете загрузить на сервер эти наборы данных:
+				</Typography>
+
+				<UploadGroup />
+			</Box>
+
 		</div>
 	)
 }

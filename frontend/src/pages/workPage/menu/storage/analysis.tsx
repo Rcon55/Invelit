@@ -2,6 +2,7 @@ import { Tab, Tabs } from '@mui/material';
 import React from 'react'
 import { TabPanel } from '../../../../shared/components/tabs';
 
+
 export const Analysis = () => {
 	const [state, setState] = React.useState(0);
 

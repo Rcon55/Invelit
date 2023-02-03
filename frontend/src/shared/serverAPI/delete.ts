@@ -2,9 +2,7 @@ import axios from "axios"
 
 export async function deleteRequest (url:string, keys:any) {
 	try {
-		axios.delete(url, {data: keys})
-			.then(function (response) { return(response) })
-			.catch(function (error) { return(error) })
+		return await axios.delete(url, {params: {key: keys}})
 	} catch (error) {
 		return(error)
 	}

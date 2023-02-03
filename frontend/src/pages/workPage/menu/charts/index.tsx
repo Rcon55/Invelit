@@ -1,7 +1,9 @@
 import React from 'react'
 import { Box, Tab, Tabs } from '@mui/material';
-import { TabPanel } from '../../../../shared/components/tabs';
 import { DataTab } from './dataTab';
+import { TabPanel } from '../../../../shared/components/tabs';
+
+
 
 export const Charts = () => {
 	const [tab, setTab] = React.useState(0);

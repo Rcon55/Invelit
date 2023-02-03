@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const DataMenu = () => {
+export const FiltersMenu = () => {
 	return (
 		<div>index</div>
 	)

@@ -1,10 +1,10 @@
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import React from 'react'
-import { useAppDispatch } from '../../../../entities';
-import { TabPanel } from '../../../../shared/components/tabs';
 import { Analysis } from './analysis';
 import { Load } from './load';
 import { Server } from './server';
+import { TabPanel } from '../../../../shared/components/tabs';
+
 
 export const Storage = () => {
 	const [state, setState] = React.useState(0);

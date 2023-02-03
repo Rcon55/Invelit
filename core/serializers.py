@@ -6,7 +6,7 @@ class SamplesSerializer(serializers.ModelSerializer):
 		model = Samples
 		fields = ['sample_id', 'group', 'name', 'area', 'field', 'uwi', 'well', 
 			'autor', 'create_date', 'update_date']
-		read_only_fields = ['create_date', 'update_date', 'autor']
+		read_only_fields = ['create_date', 'update_date']
 
 class StorageSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -18,7 +18,6 @@ class GroupsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Groups
 		fields = ['group_id', 'name', 'autor', 'description', 'origin']
-		read_only_fields = ['autor', 'origin']
 
 class ExperimentsSerializer(serializers.ModelSerializer):
 	class Meta:

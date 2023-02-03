@@ -44,6 +44,14 @@ export const GenInputGroup = (props: any) => {
 				onChange={(event) => props.valSetter('group', event.target.value)}
 			/>
 
+			 <TextField
+				id="standard-required"
+				label="Комментарий"
+				defaultValue=""
+				variant="standard"
+				onChange={(event) => props.valSetter('description', event.target.value)}
+			/>
+
 			<Selector valSetter={props.valSetter}/>
 
 			 <TextField

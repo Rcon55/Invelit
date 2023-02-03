@@ -4,8 +4,9 @@ import {v4 as uuid} from 'uuid';
 
 import StorageRoundedIcon from '@mui/icons-material/StorageRounded';
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
-import { useAppDispatch } from '../../../entities/store/hooks/typedHooks';
+import { useAppDispatch } from '../../../entities';
 import { statesActions } from '../../../entities/store/states/actions';
+
 
 interface NavbarItemProps {
 	icon: React.ReactNode,

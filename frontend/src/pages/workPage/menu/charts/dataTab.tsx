@@ -1,8 +1,10 @@
 import { Tab, Tabs } from '@mui/material';
 import React from 'react'
-import { TabPanel } from '../../../../shared/components/tabs';
 import { FiltersMenu } from '../../../../widgets/filtersMenu';
 import { VisMenu } from '../../../../widgets/visualization';
+import { TabPanel } from '../../../../shared/components/tabs';
+
+
 
 export const DataTab = () => {
 	const [state, setState] = React.useState(0);

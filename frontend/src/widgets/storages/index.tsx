@@ -1,29 +1,21 @@
-import { Button, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import React from 'react'
-import { TableSelector } from '../../shared/components/selectors'
+import { CloneStorageForm } from './ui'
 
 export const StoragesTab = () => {
 	const [dataKit, setDataKit] = React.useState('')
+	console.log(dataKit)
 	return (
 		<div>
 			<Typography variant="subtitle1" gutterBottom m={2}>
 				Выберете набор данных для клонирования:
 			</Typography>
-			{/* <TableSelector 
-				list={{['test']: {name: 'Тестовый набор данных'}}}
-				onSelect={setDataKit}
-			/> */}
-			<br/>
-			<Button
-				variant="contained"
-				disabled={dataKit === '' || false}
-				sx={{m:1}}
-			>
-				Выгрузить
-			</Button>
+
+			<CloneStorageForm callback={setDataKit}/>
+
 			<Typography variant="subtitle1" gutterBottom m={2}>
-				Эта функция нужна для создания форка глобального набора данных 
-				или для копирования собственного набора в БД
+				Выбранный набор данных будет скопирован в ваш репозиторий и станет 
+				доступен для выгрузки с сервера
 			</Typography>
 		</div>
 	)

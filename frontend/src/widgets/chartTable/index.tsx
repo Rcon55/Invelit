@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTypedSelector } from '../../entities';
-import { store } from '../../entities/store';
 import { getTable, getHeader, getIdColumn } from '../../features/getTable';
 import { TableMenu } from './menu'
 import { Table } from './table'

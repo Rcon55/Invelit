@@ -1,10 +1,12 @@
-import { Tab, Tabs } from '@mui/material';
 import React from 'react'
+import { Tab, Tabs } from '@mui/material';
 import { TabPanel } from '../../../../shared/components/tabs';
 import { ExchangeTab } from '../../../../widgets/exchange';
 import { ServerManager } from '../../../../widgets/serverManager';
 import { StoragesTab } from '../../../../widgets/storages';
-import { SubscribeTab } from '../../../../widgets/subscribes';
+
+
+
 
 export const Server = () => {
 	const [state, setState] = React.useState(0);

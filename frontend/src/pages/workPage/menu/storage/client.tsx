@@ -1,7 +1,12 @@
 import React from 'react'
+import { ClientManager } from '../../../../widgets/clientManager'
+
+
 
 export const Client = () => {
 	return (
-		<div>client</div>
+		<div>
+			{/* <ClientManager /> */}
+		</div>
 	)
 }

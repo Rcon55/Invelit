@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Routing } from '../pages';
 import { withProviders } from './providers';
+import { Routing } from '../pages';
 
 
 const App = () => {

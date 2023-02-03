@@ -1,9 +1,10 @@
 import React from 'react'
-import { Route, Routes,  Navigate, useNavigate } from 'react-router-dom'
-import { useTypedSelector } from '../entities'
+import { Route, Routes,  Navigate } from 'react-router-dom'
 import { LoginPage } from './loginPage/index'
 import SignUp from './registration'
 import { WorkPage } from './workPage'
+import { useTypedSelector } from '../entities'
+
 
 export const Routing = () => {
 	const token = useTypedSelector(state => state.setup.token)

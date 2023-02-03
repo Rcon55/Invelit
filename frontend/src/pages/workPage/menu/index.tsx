@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import { useTypedSelector } from '../../../entities'
 import { Charts } from './charts'
 import { Storage } from './storage'
+import { useTypedSelector } from '../../../entities'
 
 export const Menu = () => {
 	const activePage = useTypedSelector(state => state.states.activePage)

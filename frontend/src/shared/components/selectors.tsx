@@ -21,8 +21,8 @@ export const TableSelector = ({	label,
 	const [table, setTable] = React.useState('')
 
 	const tables:any = {}
-	const dict = useTypedSelector(state => state.data.dictTables)
-	Object.keys(dict).map(table => tables[table] = {name: dict[table].name})
+	const dict = useTypedSelector(state => state.data.dictionary)
+	Object.keys(dict).map(table => tables[table] = {name: dict[table].tableName})
 
 	const handleChange = (event: SelectChangeEvent) => {
 		onSelect(Object.keys(tables).find(key => tables[key].name === event.target.value));

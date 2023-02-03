@@ -3,7 +3,6 @@ import axios from 'axios';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../entities';
-import { store } from '../../entities/store';
 import { setupActions } from '../../entities/store/setup/actions';
 
 export const LoginPage = () => {

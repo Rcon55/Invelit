@@ -1,6 +1,5 @@
 import { Grid } from '@mui/material'
 import React, { useState } from 'react'
-import { store } from '../../entities/store'
 import { Charts } from './charts'
 import { Menu } from './menu'
 import { Sidebar } from './sidebar'

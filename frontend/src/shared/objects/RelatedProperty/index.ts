@@ -1,0 +1,2 @@
+export { RelatedProperty } from "./relatedPropertyClass";
+
