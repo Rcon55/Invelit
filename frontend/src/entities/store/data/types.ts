@@ -1,24 +1,25 @@
 import { dictionaryType } from "./dictionaryType";
 import { dataActions } from "./actions";
+import { ExperimentsType, GroupType, PropertiesType, SamplesType } from "./tablesTypes";
 
 
 export interface StoreType {
-	samples: any[];
+	samples: SamplesType[];
 	dictionary: dictionaryType;
-	experiments: any[];
-	properties: any[];
-	groups:any[];
+	experiments: ExperimentsType[];
+	properties: PropertiesType[];
+	groups:GroupType[];
 }
 
 
 interface updateSamplesAction {
 	type: dataActions.UPDATE_SAMPLES;
-	payload: any[];
+	payload: SamplesType[];
 }
 
 interface updatePropertiesAction {
 	type: dataActions.UPDATE_PROPERTIES;
-	payload: any[];
+	payload: PropertiesType[];
 }
 
 interface updateDictTableAction {
@@ -28,32 +29,32 @@ interface updateDictTableAction {
 
 interface updateExperimentsAction {
 	type: dataActions.UPDATE_EXPERIMENTS;
-	payload: any[];
+	payload: ExperimentsType[];
 }
 
 interface updateGroupsAction {
 	type: dataActions.UPDATE_GROUPS;
-	payload: any[];
+	payload: GroupType[];
 }
 
 interface addSamplesAction {
 	type: dataActions.ADD_SAMPLES;
-	payload: any[];
+	payload: SamplesType[];
 }
 
 interface addExperimentsAction {
 	type: dataActions.ADD_EXPERIMENTS;
-	payload: any[];
+	payload: ExperimentsType[];
 }
 
 interface addPropertiesAction {
 	type: dataActions.ADD_PROPERTIES;
-	payload: any[];
+	payload: PropertiesType[];
 }
  
 interface addGroupsAction {
 	type: dataActions.ADD_GROUPS;
-	payload: any[];
+	payload: GroupType[];
 }
 
 export type dataActionsType = 	updateSamplesAction | 
