@@ -6,6 +6,7 @@ const theme = createTheme({
 		MuiCssBaseline: {
 			styleOverrides: `
 				body: {
+					box-sizing: border-box;
 					margin: 0px;
 				}
 			`,
