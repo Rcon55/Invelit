@@ -1,19 +1,19 @@
-import { Button } from '@mui/material';
-import React from 'react'
-import { sendGeneratorModel } from './requests';
-import { GenInputGroup } from './ui/inputGroup';
+import React, { useRef } from 'react'
+import { DatasetInputBlock, ModelSelector } from './ui/inputGroup';
+import { Box, Button } from '@mui/material';
 
 export const GeneratorsTab = () => {
-	const inputValues:any = {}
-	const setInputValues = (prop:string, val:any) => {inputValues[prop] = val}
+	const datasetName = useRef()
+	const datasetComment = useRef()
 	return (
-		<div>
-			<GenInputGroup valSetter={setInputValues} />
+		<Box sx={{margin: '1rem'}}>
+			<DatasetInputBlock nameRef={datasetName} commentRef={datasetComment}/>
+			<ModelSelector/>
 			<Button
 				variant="outlined"
 				sx={{ mt: 2, ml: 2}}
-				onClick={() => sendGeneratorModel(inputValues)}
+				onClick={() => console.log(datasetName)}
 			>Создать</Button>
-		</div>
+		</Box>
 	)
 }
