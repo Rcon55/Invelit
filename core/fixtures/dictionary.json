@@ -1,0 +1,325 @@
+[
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "sample_id",
+			"column_desc": "PK",
+			"editable": "False",
+			"comment": "id column"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "name",
+			"column_desc": "Номер образца",
+			"editable": "True",
+			"comment": "Номер образца"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "area",
+			"column_desc": "Площадь",
+			"editable": "True",
+			"comment": "Площадь"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "area",
+			"column_desc": "Площадь",
+			"editable": "True",
+			"comment": "Площадь"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "field",
+			"column_desc": "Месторождение",
+			"editable": "True",
+			"comment": "Месторождение"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "uwi",
+			"column_desc": "UWI",
+			"editable": "True",
+			"comment": "UWI"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "well",
+			"column_desc": "Скважина",
+			"editable": "True",
+			"comment": "Скважина"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "autor",
+			"column_desc": "Автор",
+			"editable": "False",
+			"comment": "Автор"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "create_date",
+			"column_desc": "Создано",
+			"editable": "False",
+			"comment": "Создано"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "update_date",
+			"column_desc": "Обновлено",
+			"editable": "False",
+			"comment": "Обновлено"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "samples",
+			"table_desc": "Образцы",
+			"column_name": "group",
+			"column_desc": "Набор данных",
+			"editable": "False",
+			"comment": "Набор данных"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "properties",
+			"table_desc": "ФЕС",
+			"column_name": "id",
+			"column_desc": "PK",
+			"editable": "False",
+			"comment": "PK"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "properties",
+			"table_desc": "ФЕС",
+			"column_name": "porosity",
+			"column_desc": "Пористость",
+			"editable": "True",
+			"comment": "Пористость"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "properties",
+			"table_desc": "ФЕС",
+			"column_name": "permeability",
+			"column_desc": "Проницаемость",
+			"editable": "True",
+			"comment": "Проницаемость"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "properties",
+			"table_desc": "ФЕС",
+			"column_name": "density",
+			"column_desc": "Плотность",
+			"editable": "True",
+			"comment": "Плотность"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "properties",
+			"table_desc": "ФЕС",
+			"column_name": "experiment",
+			"column_desc": "ID Experiment",
+			"editable": "False",
+			"comment": "ID Experiment"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "groups",
+			"table_desc": "Наборы данных",
+			"column_name": "group_id",
+			"column_desc": "PK",
+			"editable": "False",
+			"comment": "PK"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "groups",
+			"table_desc": "Наборы данных",
+			"column_name": "name",
+			"column_desc": "Название",
+			"editable": "True",
+			"comment": "Название"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "groups",
+			"table_desc": "Наборы данных",
+			"column_name": "autor",
+			"column_desc": "Автор",
+			"editable": "False",
+			"comment": "Автор"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "groups",
+			"table_desc": "Наборы данных",
+			"column_name": "description",
+			"column_desc": "Описание",
+			"editable": "True",
+			"comment": "Описание"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "groups",
+			"table_desc": "Наборы данных",
+			"column_name": "origin",
+			"column_desc": "Оригинал",
+			"editable": "False",
+			"comment": "Оригинал"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "experiments",
+			"table_desc": "Исследования",
+			"column_name": "experiment_id",
+			"column_desc": "PK",
+			"editable": "False",
+			"comment": "PK"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "experiments",
+			"table_desc": "Исследования",
+			"column_name": "name",
+			"column_desc": "Номер исследования",
+			"editable": "True",
+			"comment": "Номер исследования"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "experiments",
+			"table_desc": "Исследования",
+			"column_name": "experiment_type",
+			"column_desc": "Тип исследования",
+			"editable": "True",
+			"comment": "Тип исследования"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "experiments",
+			"table_desc": "Исследования",
+			"column_name": "date",
+			"column_desc": "Дата исследования",
+			"editable": "True",
+			"comment": "Дата исследования"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "experiments",
+			"table_desc": "Исследования",
+			"column_name": "sample_id",
+			"column_desc": "ID Samples",
+			"editable": "False",
+			"comment": "ID Samples"
+		}
+	},
+
+	{
+		"model": "core.dictfield",
+		"fields": {
+			"table_name": "experiments",
+			"table_desc": "Исследования",
+			"column_name": "description",
+			"column_desc": "Описание",
+			"editable": "True",
+			"comment": "Описание"
+		}
+	}
+]
