@@ -3,9 +3,11 @@ import numpy as np
 from core.app.generators.basics import Methods
 
 class PorosityGen:
-	def __init__(self, experiments_list: list) -> None:
+	def __init__(self, experiments_list: list, settings: dict) -> None:
 		self.experiments_list = experiments_list
 		self.df = pd.DataFrame(columns=['experiment', 'porosity', 'density'])
+		self.dev_porosity = settings['deviationPorosity']
+		self.medium_porosity = settings['medianPorosity']
 
 	def random_normal(self, mu, sigma):
 		res = mu + sigma * np.random.randn() / np.pi
@@ -18,8 +20,6 @@ class PorosityGen:
 		return(self.skelet_density - por * (self.skelet_density - 1))
 
 	def init_model(self):
-		self.medium_porosity = self.random_normal(0.23, 0.13)
-		self.dev_porosity = 0.12
 		self.skelet_density = 2.7
 
 	def create_porosity(self):
@@ -33,16 +33,16 @@ class PorosityGen:
 
 
 class PermeabilityGen(PorosityGen):
-	def __init__(self, experiments_list: list) -> None:
-		super().__init__(experiments_list)
+	def __init__(self, experiments_list: list, settings: dict) -> None:
+		super().__init__(experiments_list, settings)
 		self.create_porosity()
 		self.df['permeability'] = self.df['porosity']
 
-		self.min_p = self.random_normal(0.08, 0.02)
-		self.max_p = self.random_normal(0.38, 0.02)
-		self.min_k = 0.01
-		self.max_k = 6000
-		self.sigma = 0.5
+		self.min_p = settings['t1Porosity']
+		self.max_p = settings['t2Porosity']
+		self.min_k = settings['t1Permeability']
+		self.max_k = settings['t2Permeability']
+		self.sigma = settings['deviationPermeability']
 	
 	def lin_log(self, por):
 		perm = self.min_k + (por - self.min_p) * (np.log(self.max_k) - np.log(self.min_k)) / (self.max_p - self.min_p)
