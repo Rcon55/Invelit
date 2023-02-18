@@ -4,8 +4,10 @@ services:
     image: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    env_file:
-      - ./petrophysics/.env.prod.db
+    environment:
+      - POSTGRES_USER=server
+      - POSTGRES_PASSWORD=123003
+      - POSTGRES_DB=appDB
   web:
     platform: linux/amd64
     build:
