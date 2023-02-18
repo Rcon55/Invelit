@@ -1,0 +1,37 @@
+services:
+  db:
+    platform: linux/amd64
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./petrophysics/.env.prod.db
+  web:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    image: rcon/invelit:web
+    command: gunicorn petrophysics.wsgi:application --bind 0.0.0.0:8000
+    expose:
+      - 8000
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+    env_file:
+      - ./petrophysics/.env.prod
+    depends_on:
+      - db
+  nginx:
+    platform: linux/amd64
+    build: ./nginx
+    image: rcon/invelit:nginx
+    ports:
+      - 1337:80
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
