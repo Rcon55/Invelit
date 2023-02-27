@@ -11,7 +11,8 @@ import { statesActions } from '../../entities/store/states/actions';
 export const Table = () => {
 	const activeTable = useTypedSelector(state => state.states.activeDataTable);
 	const selectedRow = useTypedSelector(state => state.states.selectedData[activeTable])
-	const table = getTable(activeTable);
+	const table = useTypedSelector(state => state.data[activeTable]);
+	
 	const columns = table?.[0] && getHeader(activeTable);
 	const pk = table?.[0] && getIdColumn(activeTable);
 
