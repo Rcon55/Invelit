@@ -12,7 +12,8 @@ export const Menu = () => {
 			sx={{
 				width: '100%',
 				height: '100vh',
-				borderRight: '1px solid #D5D8DC'
+				borderRight: '1px solid #D5D8DC',
+				overflow: 'auto',
 			}}
 		>
 			{	activePage === 'storage' ?

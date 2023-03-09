@@ -6,6 +6,8 @@ import StorageRoundedIcon from '@mui/icons-material/StorageRounded';
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
 import { useAppDispatch } from '../../../entities';
 import { statesActions } from '../../../entities/store/states/actions';
+import { store } from '../../../entities/store';
+import { useState } from 'react';
 
 
 interface NavbarItemProps {
@@ -29,11 +31,13 @@ const NavbarItem = ({icon, actionFunction}: NavbarItemProps) => {
 }
 
 export const Sidebar = () => {
+	const [state, setState] = useState('storage');
 	const dispatch = useAppDispatch()
 	const drawerWidth = 60;
 
 	const setActivePage = (page:string) => {
 		dispatch({type: statesActions.SET_ACTIVE_PAGE, payload: page})
+		setState(page);
 	}
 
 	return (
@@ -52,11 +56,18 @@ export const Sidebar = () => {
 			<Divider />
 			<List>
 				<NavbarItem 
-					icon={<StorageRoundedIcon sx={{ fontSize: 28 }}/>}
+					icon={<StorageRoundedIcon 
+							sx={{ fontSize: 28 }}
+							color={state === 'storage' ? 'primary': 'action'}
+						/>}
 					actionFunction={() => setActivePage('storage')}
+
 				/>
 				<NavbarItem 
-					icon={<QueryStatsRoundedIcon sx={{ fontSize: 28 }}/>}
+					icon={<QueryStatsRoundedIcon 
+							sx={{ fontSize: 28 }}
+							color={state === 'plot' ? 'primary': 'action'}
+						/>}
 					actionFunction={() => setActivePage('plot')}
 				/>
 			</List>

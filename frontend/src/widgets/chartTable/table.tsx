@@ -2,7 +2,7 @@ import { DataGrid, GridSelectionModel } from '@mui/x-data-grid';
 import React from 'react'
 import { useAppDispatch, useTypedSelector } from '../../entities';
 import { store } from '../../entities/store';
-import { getHeader, getIdColumn, getTable } from '../../features/getTable';
+import { getHeader, getIdColumn } from '../../features/getTable';
 import { SelectedDataType } from '../../entities/store/states/types';
 import { findAllChilds } from '../../features/storeMethods/selections';
 import { statesActions } from '../../entities/store/states/actions';

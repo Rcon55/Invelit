@@ -1,3 +1,5 @@
+export { defaultState } from "./states/reduser";
+
 export { rootReduser, store, RootState } from "./rootReduser";
 
 export { dataActions } from "./data/actions";

@@ -18,19 +18,19 @@ export const Analysis = () => {
 				variant="fullWidth"
 				textColor='secondary'
 				indicatorColor='secondary'
-				sx={{minHeight: "10px"}}
+				sx={{minHeight: '42px', height: '42px'}}
 			>
 				<Tab
 					component="a"
 					value={0}
 					label='Статистика'
-					sx={{fontSize: "14px", minHeight: "10px"}}
+					sx={{minHeight: '42px', height: '42px'}}
 				/>
 				<Tab 
 					component="a"
 					value={1}
 					label='История'
-					sx={{fontSize: "14px", minHeight: "10px"}}
+					sx={{minHeight: '42px', height: '42px'}}
 				/>
 			</Tabs>
 

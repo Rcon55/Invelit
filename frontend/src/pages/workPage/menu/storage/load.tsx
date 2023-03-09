@@ -26,19 +26,19 @@ export const Load = () => {
 					component="a"
 					value={0}
 					label='Генератор'
-					sx={{fontSize: "14px", minHeight: "10px"}}
+					sx={{minHeight: '42px', height: '42px'}}
 				/>
 				{/* <Tab
 					component="a"
 					value={1}
 					label='Ручная коррекция'
-					sx={{fontSize: "14px", minHeight: "10px"}}
+					sx={{minHeight: '42px', height: '42px'}}
 				/> */}
 				{/* <Tab 
 					component="a"
 					value={2}
 					label='Файл'
-					sx={{fontSize: "14px", minHeight: "10px"}}
+					sx={{minHeight: '42px', height: '42px'}}
 				/> */}
 			</Tabs>
 

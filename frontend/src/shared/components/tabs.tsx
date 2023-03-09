@@ -5,7 +5,7 @@ interface TabPanelProps {
 	children: React.ReactNode,
 	value: number,
 	index: number,
-	id: string
+	id: string,
 	height?: string,
 }
 
@@ -23,7 +23,7 @@ export const TabPanel = (props: TabPanelProps) => {
 				<Box sx={{ 
 					p: 0,
 					width: '100%',
-					// height: {height} 
+					height: height,
 				}}>
 					{children}
 				</Box>

@@ -1,21 +1,25 @@
-import { Box, Button, Grid, MenuItem, TextField } from '@mui/material'
-import React, { Ref } from 'react'
-import { sendGeneratorModel } from '../requests'
+import { Grid, MenuItem, TextField } from '@mui/material'
+import React from 'react'
 
-export const ModelSelector = (props: any) => {
+interface ModelSelectorProps {
+	modelSetter: Function
+}
+
+export const ModelSelector = ({ modelSetter }: ModelSelectorProps) => {
 	const options = [{value: 'exponential', label: 'Экспоненциальная модель проницаемости'}]
+	
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		props.valSetter('model', event.target.value)}
+		modelSetter(event.target.value)}
 
 	return(
 		<TextField
 			select
-			label="Модель"
 			defaultValue=""
 			fullWidth
 			helperText="Выберете петрофизическую модель"
 			variant="standard"
 			onChange={handleChange}
+			sx={{marginTop: 1}}
 		>
 			{options.map((option) => (
 				<MenuItem key={option.value} value={option.value}>
@@ -27,11 +31,10 @@ export const ModelSelector = (props: any) => {
 }
 
 interface DatasetInputBlockProps {
-	nameRef: React.MutableRefObject<string>,
-	commentRef: React.MutableRefObject<string>,
+	headerSetter: Function,
 }
 
-export const DatasetInputBlock = ({ nameRef, commentRef}: DatasetInputBlockProps) => {
+export const DatasetInputBlock = ({ headerSetter }: DatasetInputBlockProps) => {
 	return (
 		<Grid container spacing={1}>
 			<Grid item xs={6} md={6}>
@@ -41,7 +44,7 @@ export const DatasetInputBlock = ({ nameRef, commentRef}: DatasetInputBlockProps
 					defaultValue=""
 					fullWidth
 					variant="standard"
-					onChange={(event) => nameRef.current = event.target.value}
+					onChange={(event) => headerSetter("name", event.target.value)}
 				/>
 			</Grid>
 
@@ -52,7 +55,7 @@ export const DatasetInputBlock = ({ nameRef, commentRef}: DatasetInputBlockProps
 					defaultValue=""
 					fullWidth
 					variant="standard"
-					onChange={(event) => commentRef.current = event.target.value}
+					onChange={(event) => headerSetter("comment", event.target.value)}
 				/>
 			</Grid>
 		</Grid>

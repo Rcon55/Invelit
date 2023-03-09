@@ -1,18 +1,36 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material'
+import { Button, Grid, TextField, Typography } from '@mui/material'
 import React from 'react'
+import { DatasetHeaderType, ExponentialModelProperties } from '../types'
+import { sendExpModRequest } from '../requests/exponential'
 
 interface ExponentialModelProps {
-	modelSettings: Function
+	header: DatasetHeaderType,
 }
 
-export const ExponentialModel = ({modelSettings}: ExponentialModelProps) => {
+export const ExponentialModel = ({ header }: ExponentialModelProps) => {
+	const modelSettings: ExponentialModelProperties = {
+		numberOfSamples: null,
+		medianPorosity: null,
+		deviationPorosity: null,
+		t1Porosity: null,
+		t2Porosity: null,
+		t1Permeability: null,
+		t2Permeability: null,
+		deviationPermeability: null
+	}
+
+	async function submitModelSettings () {
+		console.log(header)
+		await sendExpModRequest(header, modelSettings)
+	}
+
 	return (
 		<Grid container spacing={2} >
 			<Grid item md={6}>
-				<TextField 	id="numSamples" 
+				<TextField 	id="numberOfSamples" 
 							type="number" 
 							label="Кол-во обр." 
-							onChange={(event) => modelSettings('numSamples', event.target.value)}
+							onChange={(event) => modelSettings['numberOfSamples'] = Number(event.target.value)}
 							variant="standard" />
 			</Grid>
 
@@ -20,9 +38,7 @@ export const ExponentialModel = ({modelSettings}: ExponentialModelProps) => {
 				<Button
 					variant="outlined"
 					fullWidth
-					
-					sx={{ width: '100%', bottom: 0}}
-					onClick={() => console.log(modelSettings)}
+					onClick={submitModelSettings}
 					>Создать
 				</Button>
 			</Grid>
@@ -34,17 +50,17 @@ export const ExponentialModel = ({modelSettings}: ExponentialModelProps) => {
 				</Typography>
 			</Grid>
 			<Grid item md={6}>
-				<TextField 	id="midPor" 
+				<TextField 	id="medianPorosity" 
 							type="number" 
 							label="Ср. пористость" 
-							onChange={(event) => modelSettings('midPor', event.target.value)}
+							onChange={(event) => modelSettings['medianPorosity'] = Number(event.target.value)}
 							variant="standard" />
 			</Grid>
 			<Grid item md={6}>
-				<TextField 	id="devPor" 
+				<TextField 	id="deviationPorosity" 
 							type="number" 
 							label="Разброс знач." 
-							onChange={(event) => modelSettings('devPor', event.target.value)}
+							onChange={(event) => modelSettings['deviationPorosity'] = Number(event.target.value)}
 							variant="standard" />
 			</Grid>
 
@@ -55,38 +71,38 @@ export const ExponentialModel = ({modelSettings}: ExponentialModelProps) => {
 				</Typography>
 			</Grid>
 			<Grid item md={6}>
-				<TextField 	id="minPor" 
+				<TextField 	id="t1Porosity" 
 							type="number" 
 							label="Пористость T1" 
-							onChange={(event) => modelSettings('minPor', event.target.value)}
+							onChange={(event) => modelSettings['t1Porosity'] = Number(event.target.value)}
 							variant="standard" />
 			</Grid>
 			<Grid item md={6}>
-				<TextField 	id="minPerm" 
+				<TextField 	id="t1Permeability" 
 							type="number" 
 							label="Проницаемость T1" 
-							onChange={(event) => modelSettings('minPerm', event.target.value)}
+							onChange={(event) => modelSettings['t1Permeability'] = Number(event.target.value)}
 							variant="standard" />
 			</Grid>
 			<Grid item md={6}>
-				<TextField 	id="maxPor" 
+				<TextField 	id="t2Porosity" 
 							type="number" 
 							label="Пористость T2"
-							onChange={(event) => modelSettings('maxPor', event.target.value)}
+							onChange={(event) => modelSettings['t2Porosity'] = Number(event.target.value)}
 							variant="standard" />
 			</Grid>
 			<Grid item md={6}>
-				<TextField 	id="maxPerm" 
+				<TextField 	id="t2Permeability" 
 							type="number" 
 							label="Проницаемость T2" 
-							onChange={(event) => modelSettings('maxPerm', event.target.value)}
+							onChange={(event) => modelSettings['t2Permeability'] = Number(event.target.value)}
 							variant="standard" />
 			</Grid>
 			<Grid item md={6}>
-				<TextField 	id="devPerm" 
+				<TextField 	id="deviationPermeability" 
 							type="number" 
 							label="Разброс знач." 
-							onChange={(event) => modelSettings('devPerm', event.target.value)}
+							onChange={(event) => modelSettings['deviationPermeability'] = Number(event.target.value)}
 							variant="standard" />
 			</Grid>
 		</Grid>

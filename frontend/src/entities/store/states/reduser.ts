@@ -1,10 +1,15 @@
 import { StoreType, statesActionsType } from './types'
 import { statesActions } from './actions'
 
-const defaultState: StoreType = {
+export const defaultState: StoreType = {
 	activePage: 'storage',
-	selectedSamples: [],
 	activeDataTable: 'Samples',
+	selectedData: {
+		samples: [], 
+		groups: [], 
+		experiments: [],
+		properties: [],
+	}
 }
 
 export function statesReducer (state = defaultState, action:statesActionsType): StoreType {
@@ -15,8 +20,8 @@ export function statesReducer (state = defaultState, action:statesActionsType): 
 		case statesActions.SET_ACTIVE_DATA_TABLE:
 			return {...state, activeDataTable: action.payload}
 
-		case statesActions.UPDATE_SELECTED_SAMPLES:
-			return {...state, selectedSamples: action.payload}
+		case statesActions.UPDATE_SELECTED_DATA:
+			return {...state, selectedData: action.payload}
 
 		default:
 			return(state)

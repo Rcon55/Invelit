@@ -1,62 +1,66 @@
 import { chartActions } from "./actions";
 
 export interface StoreType {
-	min_x: number,
-	max_x: number,
-	min_y: number,
-	max_y: number,
-	min_z: number,
-	max_z: number,
-	log_x: boolean,
-	log_y: boolean,
-	log_z: boolean,
+	crossPlotVis: CrossPlotVisualization,
+	crossPlotData?: CrossPlotData[],
 }
 
 
-interface SetMinXType {
-	type: chartActions.SET_MIN_X;
-	payload: number;
+export type CrossPlotData = {
+	name: string,
+	position: number,
+	data: ChartDataType[],
 }
-interface SetMinYType {
-	type: chartActions.SET_MIN_Y;
-	payload: number;
+
+export type CrossPlotVisualization = {
+	axises: {
+		horizontal: {
+			main: {
+				min: number,
+				max: number,
+				log: boolean,
+				grid: boolean,
+			},
+			second?: {
+				min: number,
+				max: number,
+				log: boolean,
+				grid: boolean,
+			},
+		},
+		vertical: {
+			main: {
+				min: number,
+				max: number,
+				log: boolean,
+				grid: boolean,
+			},
+			second?: {
+				min: number,
+				max: number,
+				log: boolean,
+				grid: boolean,
+			},
+		},
+	},
 }
-interface SetMinZType {
-	type: chartActions.SET_MIN_Z;
-	payload: number;
+
+type ChartDataType = {
+	x: number[],
+	y: number[],
+	z: number[],
 }
-interface SetMaxXType {
-	type: chartActions.SET_MAX_X;
-	payload: number;
+
+interface updateCrossPlotVisualization {
+	type: chartActions.UPDATE_CROSS_PLOT_VISUALIZATION;
+	payload: CrossPlotVisualization;
 }
-interface SetMaxYType {
-	type: chartActions.SET_MAX_Y;
-	payload: number;
-}
-interface SetMaxZType {
-	type: chartActions.SET_MAX_Z;
-	payload: number;
-}
-interface SetLogXType {
-	type: chartActions.SET_LOG_X;
-	payload: boolean;
-}
-interface SetLogYType {
-	type: chartActions.SET_LOG_Y;
-	payload: boolean;
-}
-interface SetLogZType {
-	type: chartActions.SET_LOG_Z;
-	payload: boolean;
+
+interface updateCrossPlotData {
+	type: chartActions.UPDATE_CROSS_PLOT_DATA;
+	payload: CrossPlotData[];
 }
 
 
-export type chartActionsType = 	SetMinXType | 
-								SetMinYType |
-								SetMinZType |
-								SetMaxXType |
-								SetMaxYType |
-								SetMaxZType |
-								SetLogXType |
-								SetLogYType |
-								SetLogZType ;
+export type chartActionsType = 	updateCrossPlotVisualization | 
+								updateCrossPlotData;

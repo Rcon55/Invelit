@@ -29,13 +29,13 @@ export const Server = () => {
 					component="a"
 					value={0}
 					label='Загрузка'
-					sx={{fontSize: "14px", minHeight: "10px"}}
+					sx={{minHeight: '42px', height: '42px'}}
 				/>
 				<Tab
 					component="a"
 					value={1}
 					label='Управление'
-					sx={{fontSize: "14px", minHeight: "10px"}}
+					sx={{minHeight: '42px', height: '42px'}}
 				/>
 				{/* <Tab 
 					component="a"

@@ -3,7 +3,6 @@ from .models import User
 from rest_framework import authentication, exceptions
 import jwt
 
-
 class JWTAuthentication(authentication.BaseAuthentication):
 	authentication_header_prefix = 'Bearer'
 

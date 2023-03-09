@@ -6,7 +6,7 @@ import { useTypedSelector } from "../../entities";
 interface TableSelectorProps {
 	label: string;
 	onSelect?: (state: string) => void;
-	defaultValue?: string;
+	value?: string;
 	size?: "small" | "medium";
 	width?: string;
 }
@@ -14,19 +14,20 @@ interface TableSelectorProps {
 
 export const TableSelector = ({	label,
 								onSelect, 
-								defaultValue, 
+								value, 
 								size, 
 								width,
 							}: TableSelectorProps) => {
-	const [table, setTable] = React.useState('')
-
+	const [table, setTable] = React.useState(value);
+	
 	const tables:any = {}
 	const dict = useTypedSelector(state => state.data.dictionary)
 	Object.keys(dict).map(table => tables[table] = {name: dict[table].tableName})
 
 	const handleChange = (event: SelectChangeEvent) => {
-		onSelect(Object.keys(tables).find(key => tables[key].name === event.target.value));
-		setTable(event.target.value as string);
+		const selTable = Object.keys(tables).find(key => tables[key].name === event.target.value);
+		onSelect(selTable);
+		setTable(selTable);
 	}
  
 	return (
@@ -36,7 +37,7 @@ export const TableSelector = ({	label,
 			<InputLabel id={uuid()}>{label}</InputLabel>
 			<Select
 				id={uuid()}
-				value={table}
+				value={dict[table] ? dict[table].tableName : ''}
 				onChange={handleChange}
 				size={size || 'medium'}
 			>
