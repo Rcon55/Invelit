@@ -6,7 +6,7 @@ import { ClientManager } from '../../../../widgets/clientManager'
 export const Client = () => {
 	return (
 		<div>
-			{/* <ClientManager /> */}
+			<ClientManager />
 		</div>
 	)
 }

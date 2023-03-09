@@ -4,13 +4,20 @@
 #Базы данных
 /database
 db.sqlite3
+data
 
 #Архивные данные
 archive
 
+#NGINX
+nginx
+
 #Окружение Python
 **/env
 *.env
+*env.prod
+*env.prod.db
+
 
 #Файлы миграций django
 **/migrations
@@ -21,8 +28,11 @@ archive
 
 #Docker
 docker-compose.yml
+docker-compose.prod.yml
 Dockerfile
+Dockerfile.prod
 .dockerignore
-
+entrypoint.sh
+entrypoint.prod.sh
 
 .DS_Store

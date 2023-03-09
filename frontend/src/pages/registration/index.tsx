@@ -8,10 +8,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 export default function SignUp() {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
+	const defaultMessage:any = {};
+	const [message, setMessage] = useState(defaultMessage);
+
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -30,7 +34,7 @@ export default function SignUp() {
 		})
 		.then(() => navigate("/login/"))
 		.catch(function (error) {
-			return(error)
+			setMessage(error.response.data)
 		})
   };
 
@@ -48,6 +52,16 @@ export default function SignUp() {
 			<Typography component="h1" variant="h5">
 				Регистрация
 			</Typography>
+
+			{Object.keys(message).map(item => 
+				<Typography color='red' key={item}>
+					{item === 'email' ? 'Неверный Email' : 
+					item === 'password' ? 'Неверный пароль':
+					item === 'username' ? 'Неверное имя пользователя':
+					item === 'non_field_errors' ? 'Пользователь с такими учетными данными не найден': 
+					'Ошибка'}
+				</Typography>)
+			}
 
 			<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
 				<Grid container spacing={2}>

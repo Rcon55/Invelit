@@ -1,13 +1,14 @@
 import React from 'react'
-import { ExponentialModel } from '../../../entities/generators'
+import { DatasetHeaderType, ExponentialModel } from '../../../entities/generators'
 
 interface ModelSettingsProps {
-	model: string
+	model: string,
+	header: DatasetHeaderType,
 }
 
-export const ModelSettings = ({model}: ModelSettingsProps) => {
+export const ModelSettings = ({model, header}: ModelSettingsProps) => {
 	switch (model) {
-		case 'exponential': return(<ExponentialModel/>)
-		default: return false
+		case 'exponential': return(<ExponentialModel header={header}/>)
+		default: return <></>
 	}
 }

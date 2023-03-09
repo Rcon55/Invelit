@@ -1,5 +1,12 @@
 import * as d3 from 'd3';
 
+export const autoScale = (minVal:number, maxVal:number): number[] => {
+	const space = maxVal - minVal;
+	return [
+		
+	]
+}
+
 export const xScale = (width: number, ranges: number[], logScale: boolean) => {
 	let Scale;
 	if (logScale == false) {

@@ -1,4 +1,4 @@
-import { IconButton } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import React, { useState } from 'react'
 import { useAppDispatch, useTypedSelector } from '../../entities';
 import { statesActions } from '../../entities/store/states/actions';
@@ -9,7 +9,7 @@ import { store } from '../../entities/store';
 
 export const TableMenu = () => {
 	const dispatch = useAppDispatch()
-	const [selTable, setSelTable] = useState(store.getState().states.activeDataTable)
+	const [selTable, setSelTable] = useState(store.getState().states.activeDataTable);
 
 	const setSelectedTable = (table: string) => {
 		dispatch({type: statesActions.SET_ACTIVE_DATA_TABLE, payload: table})
@@ -17,17 +17,17 @@ export const TableMenu = () => {
 	}
 
 	return (
-		<div>
+		<Box sx={{height: '60px'}}>
 			<TableSelector 
 				label={" "}
 				onSelect={setSelectedTable}
-				defaultValue={selTable}
+				value={selTable} 
 				size={"small"}
 				width={"200px"}
 			/>
 			<IconButton aria-label="delete" size="large">
 				<DeleteIcon fontSize="inherit" color='error'/>
 			</IconButton>
-		</div>
+		</Box>
 	)
 }

@@ -13,7 +13,7 @@ export const chartRender = (svgRef: any,
 							showGridX: boolean,
 							showGridY: boolean,
 							) => {
-	// d3.selectAll("svg > *").remove();
+
 	d3.selectAll("#ChartPlot > *").remove();
 
 	//setting up svg
@@ -33,15 +33,13 @@ export const chartRender = (svgRef: any,
 	axis.xAxis(svg, xScale, 10, height, showGridX, '#BDC3C7');
 	axis.yAxis(svg, yScale, 10, width, showGridY, '#BDC3C7');
 
-	console.log(data)
-
 	//settings the data
 	svg.append('g')
-			.selectAll("dot")
-			.data(data)
-			.join("circle")
-				.attr("cx", d => xScale(d['porosity']))
-				.attr("cy", d => yScale(d['permeability']))
-				.attr("r", 5)
-				.style("fill", "#E24726")
+		.selectAll("dot")
+		.data(data)
+		.join("circle")
+			.attr("cx", d => xScale(d['porosity']))
+			.attr("cy", d => yScale(d['permeability']))
+			.attr("r", 5)
+			.style("fill", "#E24726")
 }

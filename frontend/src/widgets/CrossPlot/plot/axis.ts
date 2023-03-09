@@ -13,7 +13,7 @@ export const xAxis = (	svgObj: any,
 
 	const xAxisGrid = d3.axisBottom(xScale)
 		.tickSize(-height)
-		.tickFormat(null)
+		.tickFormat((domain, number)=>{return ""})
 		.ticks(nTicks);
 
 	svgObj.append('g')
@@ -45,7 +45,7 @@ export const yAxis = (	svgObj: any,
 
 	const yAxisGrid = d3.axisLeft(yScale)
 		.tickSize(-width)
-		.tickFormat(null)
+		.tickFormat((domain, number)=>{return ""})
 		.ticks(nTicks);
 
 	svgObj.append('g')

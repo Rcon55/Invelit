@@ -38,9 +38,9 @@ export const InputTab = () => {
 			<TableSelector
 				label={"Таблица"}
 				onSelect={(t) => setSelectedTable(t)}
-				defaultValue={dict[selTable] ? dict[selTable].tableName : ''}
+				value={dict[selTable] ? dict[selTable].tableName : ''}
 			/>
-			<Grid container>
+			<Grid container> 
 				<Grid item md={8}>
 					{!dict[selTable] ? false :
 					Object.keys(dict[selTable].columns).map(field => 

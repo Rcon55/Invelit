@@ -1,10 +1,19 @@
+import { GridSelectionModel } from "@mui/x-data-grid";
 import { statesActions } from "./actions";
 
 
 export type StoreType = {
 	activePage: string,
-	selectedSamples: any[],
-	activeDataTable: string
+	activeDataTable: string,
+	selectedData: SelectedDataType,
+}
+
+export type SelectedDataType = {
+	samples?: GridSelectionModel | number[],
+	experiments?: GridSelectionModel | number[],
+	properties?: GridSelectionModel | number[],
+	groups?: GridSelectionModel | number[],
+	[table: string]: GridSelectionModel | number[],
 }
 
 interface setActivePageAction {
@@ -18,8 +27,8 @@ interface setActiveDataTableAction {
 }
 
 interface updateSelectedSamplesAction {
-	type: statesActions.UPDATE_SELECTED_SAMPLES;
-	payload: any[];
+	type: statesActions.UPDATE_SELECTED_DATA;
+	payload: SelectedDataType;
 }
 
 export type statesActionsType = 	setActiveDataTableAction | 

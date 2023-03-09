@@ -1,13 +1,16 @@
-import { Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, Link, TextField } from '@mui/material'
+import { Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, Link, TextField, Typography } from '@mui/material'
 import axios from 'axios';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../entities';
 import { setupActions } from '../../entities/store/setup/actions';
+import { useState } from 'react';
 
 export const LoginPage = () => {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
+	const defaultMessage:any = {};
+	const [message, setMessage] = useState(defaultMessage);
 
 	function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault()
@@ -23,20 +26,29 @@ export const LoginPage = () => {
 		})
 		.then(() => navigate("/"))
 		.catch(function (error) {
-			return(error)
+			setMessage(error.response.data)
 		})	
 	}
 	return (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<Box
-			sx={{
-				marginTop: 8,
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-			}}
+				sx={{
+					marginTop: 8,
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+				}}
 			>
+				{Object.keys(message).map(item => 
+					<Typography color='red' key={item}>
+						{item === 'email' ? 'Неверный Email' : 
+						item === 'password' ? 'Неверный пароль':
+						item === 'non_field_errors' ? 'Пользователь с такими учетными данными не найден': 
+						'Ошибка'}
+					</Typography>)
+				}
+				
 				<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 					<TextField
 						margin="normal"

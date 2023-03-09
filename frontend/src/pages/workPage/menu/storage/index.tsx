@@ -4,6 +4,7 @@ import { Analysis } from './analysis';
 import { Load } from './load';
 import { Server } from './server';
 import { TabPanel } from '../../../../shared/components/tabs';
+import { Client } from './client';
 
 
 export const Storage = () => {
@@ -18,30 +19,34 @@ export const Storage = () => {
 			<Box
 				sx={{
 					width: '100%',
-					height: '48px',					
+					height: '42px',					
 				}}
 			>
 				<Tabs
 					value={state}
 					onChange={handleChange}
 					variant="fullWidth"
-					sx={{height: '48px'}}
+					sx={{height: '42px', minHeight: '42px'}}
 				>
 					<Tab
 						value={0}
 						label='Сервер'
+						sx={{minHeight: '42px', height: '42px'}}
 						/>
 					<Tab 
 						value={1}
 						label='Клиент'
+						sx={{minHeight: '42px', height: '42px'}}
 						/>
 					<Tab 
 						value={2}
 						label='Операции'
+						sx={{minHeight: '42px', height: '42px'}}
 						/>
 					{/* <Tab 
 						value={3}
 						label='Анализ'
+						sx={{minHeight: '42px', height: '42px'}}
 						/> */}
 				</Tabs>
 			</Box>
@@ -51,9 +56,7 @@ export const Storage = () => {
 			</TabPanel>
 
 			<TabPanel id="client" value={state} index={1}>
-				<Typography m={2}>
-					Тут будут инструменты для работы с локальным хранилищем приложения
-				</Typography>
+				<Client />
 			</TabPanel>
 
 			<TabPanel id="load" value={state} index={2}>

@@ -9,6 +9,7 @@ export interface StoreType {
 	experiments: ExperimentsType[];
 	properties: PropertiesType[];
 	groups:GroupType[];
+	[table: string]: any;
 }
 
 

@@ -3,6 +3,7 @@ import { getRequest } from "../../../shared";
 import { dataActions } from "../../../entities/store";
 
 
+
 export const loadDataset = (group:string) => {
 	return async (dispatch:Dispatch) => {
 		try {
@@ -19,8 +20,11 @@ export const loadDataset = (group:string) => {
 			
 			const properties = responce.data['properties']
 			dispatch({type: dataActions.ADD_PROPERTIES, payload: properties})
+	
+			return(true)
 		} catch (error) { 
 			console.log(error)
+			return(false)
 		}
 	}
 }

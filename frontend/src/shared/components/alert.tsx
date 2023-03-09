@@ -9,8 +9,8 @@ interface ShowAlertProps {
 }
 
 export const ShowAlert = ({severity, message}: ShowAlertProps) => {
-	const [open, setOpen] = useState(true)
-	console.log('test2')
+	const [open, setOpen] = useState(false)
+	
 
 	const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
 		if (reason === 'clickaway') {
